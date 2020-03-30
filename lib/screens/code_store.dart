@@ -1,51 +1,23 @@
-import 'package:covid_india_tracker/models/raw_data.dart';
 import 'package:flutter/material.dart';
 import "package:covid_india_tracker/services/data_fetcher.dart";
 import "package:covid_india_tracker/models/data_api.dart";
 import "dart:async";
+import "package:charts_flutter/flutter.dart" as charts;
 import "package:google_fonts/google_fonts.dart";
-import "package:geolocator/geolocator.dart";
-import "package:covid_india_tracker/services/raw_data_fetch.dart";
-import "package:covid_india_tracker/screens/statewise_stats.dart";
 
-void main() => runApp(HomePage(
-      androidFusedLocation: true,
-    ));
+void main() => runApp(HomePage());
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
-RawDataStats _rawDataStats = new RawDataStats();
+
+
 
 class HomePage extends StatefulWidget {
-  const HomePage({
-    Key key,
-    @required this.androidFusedLocation,
-  }) : super(key: key);
-
-  final bool androidFusedLocation;
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   Future<CovidIndia> asIndiaStats = _covidIndiaStats.getStats();
-  Future<RawDataset> rawDataset = _rawDataStats.getStats();
-  Position _currPosition;
-
-  _getCurrentLocation() {
-    Geolocator()
-      ..forceAndroidLocationManager = !widget.androidFusedLocation
-      ..getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-          .then((position) {
-        if (mounted) {
-          setState(() {
-            _currPosition = position;
-          });
-        }
-      }).catchError((e) {
-        print(e);
-      });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -244,26 +216,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                FutureBuilder<GeolocationStatus>(
-                    future: Geolocator().checkGeolocationPermissionStatus(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<GeolocationStatus> snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-
-                      if (snapshot.data == GeolocationStatus.denied) {
-                        return const Text(
-                            "Access to location is denied. Please allow access to loaction for this app from device's setting.");
-                      }
-
-                      return Container(
-                        child: Text(
-                            "Current Location - ${_currPosition.toString()}"),
-                      );
-                    }),
                 Container(
                   height: 70,
                   alignment: Alignment(0.03, 0.2),
@@ -276,7 +228,78 @@ class _HomePageState extends State<HomePage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                StateWiseStats(),
+                DataTable(
+                  columnSpacing: 1.0,
+                  sortAscending: true,
+                  dataRowHeight: 30.0,
+                  columns: [
+                    DataColumn(
+                      label: Text(
+                        "State",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.purple),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        "Confirmed",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.red),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        "Active",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        "Deaths",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black),
+                        ),
+                      ),
+                    )
+                  ],
+                  rows: List.generate(dataSnapshot.data.statewise.length - 1,
+                      (index) => _getDataRow(index + 1)),
+                ),
+                Container(
+                  height: 70,
+                  alignment: Alignment(0.03, 0.2),
+                  child: Text(
+                    "Spread Trends",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                DefaultTabController(
+                  length: 2,
+                  child: Scaffold(
+                    appBar: AppBar(
+                      bottom: TabBar(
+                        tabs: <Widget>[Text("Hi"), Text("Hello")],
+                      ),
+                    ),
+                  ),
+                )
               ],
             );
           },
