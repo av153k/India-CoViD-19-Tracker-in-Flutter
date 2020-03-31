@@ -31,7 +31,7 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.table_chart),
+              leading: Icon(Icons.table_chart, color: Colors.teal),
               title: Text(
                 "StateWise Stats",
                 style: GoogleFonts.montserrat(
@@ -41,7 +41,7 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.multiline_chart),
+              leading: Icon(Icons.multiline_chart, color: Colors.black,),
               title: Text(
                 "Spread Trends",
                 style: GoogleFonts.montserrat(
@@ -51,7 +51,7 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.multiline_chart),
+              leading: Icon(Icons.person_outline, color: Colors.redAccent,),
               title: Text(
                 "Patients Information",
                 style: GoogleFonts.montserrat(
@@ -61,7 +61,7 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.multiline_chart),
+              leading: Icon(Icons.language, color: Colors.blueAccent,),
               title: Text(
                 "World Stats",
                 style: GoogleFonts.montserrat(
@@ -71,7 +71,7 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.info_outline),
+              leading: Icon(Icons.info_outline, color: Colors.green),
               title: Text(
                 "App Info",
                 style: GoogleFonts.montserrat(
