@@ -51,6 +51,26 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
+              leading: Icon(Icons.multiline_chart),
+              title: Text(
+                "Patients Information",
+                style: GoogleFonts.montserrat(
+                  textStyle:
+                      TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.multiline_chart),
+              title: Text(
+                "World Stats",
+                style: GoogleFonts.montserrat(
+                  textStyle:
+                      TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                ),
+              ),
+            ),
+            ListTile(
               leading: Icon(Icons.info_outline),
               title: Text(
                 "App Info",
