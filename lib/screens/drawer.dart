@@ -41,7 +41,7 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.multiline_chart, color: Colors.black,),
+              leading: Icon(Icons.multiline_chart, color: Colors.red,),
               title: Text(
                 "Spread Trends",
                 style: GoogleFonts.montserrat(
@@ -51,7 +51,7 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.person_outline, color: Colors.redAccent,),
+              leading: Icon(Icons.person_outline, color: Colors.cyan,),
               title: Text(
                 "Patients Information",
                 style: GoogleFonts.montserrat(
