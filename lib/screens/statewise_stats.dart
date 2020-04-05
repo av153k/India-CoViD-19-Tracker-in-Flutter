@@ -14,84 +14,113 @@ class _StateWiseStats extends State<StateWiseStats> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: stateStats,
-        builder:
-            (BuildContext context, AsyncSnapshot<CovidIndia> stateSnapshot) {
-          if (stateSnapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          DataRow _getDataRow(index) {
-            return DataRow(
-              cells: <DataCell>[
-                DataCell(
-                  Text(
-                    stateSnapshot.data.statewise[index].state,
-                    style: GoogleFonts.montserrat(),
-                  ),
-                ),
-                DataCell(Text(stateSnapshot.data.statewise[index].confirmed)),
-                DataCell(Text(stateSnapshot.data.statewise[index].active)),
-                DataCell(Text(stateSnapshot.data.statewise[index].deaths))
-              ],
-            );
-          }
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          backgroundColor: Colors.black87,
+          title: Text(
+            "StateWise Stats",
+            style: GoogleFonts.montserrat(
+              textStyle:
+                  TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+            ),
+          ),
+        ),
+        body: ListView(
+          padding: EdgeInsets.all(5),
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            FutureBuilder(
+              future: stateStats,
+              builder: (BuildContext context,
+                  AsyncSnapshot<CovidIndia> stateSnapshot) {
+                if (stateSnapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                DataRow _getDataRow(index) {
+                  return DataRow(
+                    cells: <DataCell>[
+                      DataCell(
+                        Text(
+                          stateSnapshot.data.statewise[index].state,
+                          style: GoogleFonts.montserrat(),
+                        ),
+                      ),
+                      DataCell(
+                          Text(stateSnapshot.data.statewise[index].confirmed)),
+                      DataCell(
+                          Text(stateSnapshot.data.statewise[index].active)),
+                      DataCell(Text(stateSnapshot.data.statewise[index].deaths))
+                    ],
+                  );
+                }
 
-          return DataTable(
-            columnSpacing: 1.0,
-            sortAscending: true,
-            dataRowHeight: 30.0,
-            columns: [
-              DataColumn(
-                label: Text(
-                  "State",
-                  style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.purple),
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  "Confirmed",
-                  style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.red),
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  "Active",
-                  style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.blue),
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  "Deaths",
-                  style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black),
-                  ),
-                ),
-              )
-            ],
-            rows: List.generate(stateSnapshot.data.statewise.length - 1,
-                (index) => _getDataRow(index + 1)),
-          );
-        });
+                return DataTable(
+                  columnSpacing: 1.0,
+                  sortAscending: true,
+                  dataRowHeight: 30.0,
+                  columns: [
+                    DataColumn(
+                      label: Text(
+                        "State",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.purple),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        "Confirmed",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.red),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        "Active",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        "Deaths",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black),
+                        ),
+                      ),
+                    )
+                  ],
+                  rows: List.generate(stateSnapshot.data.statewise.length - 1,
+                      (index) => _getDataRow(index + 1)),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:covid_india_tracker/screens/statewise_stats.dart';
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 
@@ -39,9 +40,19 @@ class _DrawerContentState extends State<DrawerContent> {
                       TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                 ),
               ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => StateWiseStats(),
+                    ));
+              },
             ),
             ListTile(
-              leading: Icon(Icons.multiline_chart, color: Colors.red,),
+              leading: Icon(
+                Icons.multiline_chart,
+                color: Colors.red,
+              ),
               title: Text(
                 "Spread Trends",
                 style: GoogleFonts.montserrat(
@@ -51,7 +62,10 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.person_outline, color: Colors.cyan,),
+              leading: Icon(
+                Icons.person_outline,
+                color: Colors.cyan,
+              ),
               title: Text(
                 "Patients Information",
                 style: GoogleFonts.montserrat(
@@ -61,7 +75,10 @@ class _DrawerContentState extends State<DrawerContent> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.language, color: Colors.blueAccent,),
+              leading: Icon(
+                Icons.language,
+                color: Colors.blueAccent,
+              ),
               title: Text(
                 "World Stats",
                 style: GoogleFonts.montserrat(
