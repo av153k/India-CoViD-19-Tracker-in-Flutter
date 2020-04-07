@@ -26,16 +26,15 @@ class _IndiaStats extends State<IndiaStats> {
         int confirmedCases =
             int.parse(dataSnapshot.data.statewise[0].confirmed);
         int confirmedCasesDelta =
-            dataSnapshot.data.statewise[0].delta.confirmed;
+            int.parse(dataSnapshot.data.statewise[0].deltaconfirmed);
         int activeCases = int.parse(dataSnapshot.data.statewise[0].active);
-        int activeCasesDelta = dataSnapshot.data.statewise[0].delta.active;
         int recoveredCases =
             int.parse(dataSnapshot.data.statewise[0].recovered);
         int recoveredCasesDelta =
-            int.parse(dataSnapshot.data.keyValues[0].recovereddelta);
+            int.parse(dataSnapshot.data.statewise[0].deltarecovered);
         int deceasedCases = int.parse(dataSnapshot.data.statewise[0].deaths);
         int deceasedCasesDelta =
-            int.parse(dataSnapshot.data.keyValues[0].deceaseddelta);
+            int.parse(dataSnapshot.data.statewise[0].deltadeaths);
 
         return ListView(
           padding: EdgeInsets.all(5),
@@ -98,7 +97,7 @@ class _IndiaStats extends State<IndiaStats> {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      "+$activeCasesDelta",
+                      " ",
                       style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
