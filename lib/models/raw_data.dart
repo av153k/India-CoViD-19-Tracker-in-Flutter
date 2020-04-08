@@ -1,9 +1,9 @@
-class RawDataset {
+class RawDataSet {
   List<RawData> rawData;
 
-  RawDataset({this.rawData});
+  RawDataSet({this.rawData});
 
-  RawDataset.fromJson(Map<String, dynamic> json) {
+  RawDataSet.fromJson(Map<String, dynamic> json) {
     if (json['raw_data'] != null) {
       rawData = new List<RawData>();
       json['raw_data'].forEach((v) {
@@ -38,8 +38,10 @@ class RawData {
   String source1;
   String source2;
   String source3;
+  String statecode;
   String statepatientnumber;
   String statuschangedate;
+  String typeoftransmission;
 
   RawData(
       {this.agebracket,
@@ -58,8 +60,10 @@ class RawData {
       this.source1,
       this.source2,
       this.source3,
+      this.statecode,
       this.statepatientnumber,
-      this.statuschangedate});
+      this.statuschangedate,
+      this.typeoftransmission});
 
   RawData.fromJson(Map<String, dynamic> json) {
     agebracket = json['agebracket'];
@@ -79,8 +83,10 @@ class RawData {
     source1 = json['source1'];
     source2 = json['source2'];
     source3 = json['source3'];
+    statecode = json['statecode'];
     statepatientnumber = json['statepatientnumber'];
     statuschangedate = json['statuschangedate'];
+    typeoftransmission = json['typeoftransmission'];
   }
 
   Map<String, dynamic> toJson() {
@@ -102,8 +108,10 @@ class RawData {
     data['source1'] = this.source1;
     data['source2'] = this.source2;
     data['source3'] = this.source3;
+    data['statecode'] = this.statecode;
     data['statepatientnumber'] = this.statepatientnumber;
     data['statuschangedate'] = this.statuschangedate;
+    data['typeoftransmission'] = this.typeoftransmission;
     return data;
   }
 }

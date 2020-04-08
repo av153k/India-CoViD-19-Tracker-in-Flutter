@@ -12,6 +12,8 @@ class StateWiseStats extends StatefulWidget {
 class _StateWiseStats extends State<StateWiseStats> {
   Future<CovidIndia> stateStats = _covidIndiaStats.getStats();
 
+  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,17 +60,22 @@ class _StateWiseStats extends State<StateWiseStats> {
                           Text(stateSnapshot.data.statewise[index].confirmed)),
                       DataCell(
                           Text(stateSnapshot.data.statewise[index].active)),
+                      DataCell(
+                          Text(stateSnapshot.data.statewise[index].recovered)),
                       DataCell(Text(stateSnapshot.data.statewise[index].deaths))
                     ],
                   );
                 }
 
                 return DataTable(
+                  headingRowHeight: 50.0,
+                  horizontalMargin: 5,
                   columnSpacing: 1.0,
                   sortAscending: true,
                   dataRowHeight: 30.0,
                   columns: [
                     DataColumn(
+                      numeric: false,
                       label: Text(
                         "State",
                         style: GoogleFonts.montserrat(
@@ -80,6 +87,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                       ),
                     ),
                     DataColumn(
+                      numeric: true,
                       label: Text(
                         "Confirmed",
                         style: GoogleFonts.montserrat(
@@ -91,6 +99,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                       ),
                     ),
                     DataColumn(
+                      numeric: true,
                       label: Text(
                         "Active",
                         style: GoogleFonts.montserrat(
@@ -102,6 +111,19 @@ class _StateWiseStats extends State<StateWiseStats> {
                       ),
                     ),
                     DataColumn(
+                      numeric: true,
+                      label: Text(
+                        "Recovered",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.purple),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      numeric: true,
                       label: Text(
                         "Deaths",
                         style: GoogleFonts.montserrat(
