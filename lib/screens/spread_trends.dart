@@ -9,7 +9,7 @@ CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 
 class DailyNewCases {
   final int dailyNewCases;
-  final String date;
+  final int date;
 
   DailyNewCases({@required this.dailyNewCases, @required this.date});
 }
@@ -40,11 +40,19 @@ class _SpreadTrendsState extends State<SpreadTrends> {
         }
 
         final List<DailyNewCases> dailyStats = List.generate(
-          statsSnapshot.data.casesTimeSeries.length,
+          10,
           (index) => DailyNewCases(
-              dailyNewCases: int.parse(
-                  statsSnapshot.data.casesTimeSeries[index].dailyconfirmed),
-              date: statsSnapshot.data.casesTimeSeries[index].date),
+            dailyNewCases: int.parse(statsSnapshot
+                .data
+                .casesTimeSeries[
+                    statsSnapshot.data.casesTimeSeries.length - (index + 1)]
+                .dailyconfirmed),
+            date: int.parse(statsSnapshot
+                .data
+                .casesTimeSeries[
+                    statsSnapshot.data.casesTimeSeries.length - (index + 1)]
+                .date),
+          ),
         );
 
         final List<TotalCases> totalStats = List.generate(
@@ -55,7 +63,7 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               date: statsSnapshot.data.casesTimeSeries[index].date),
         );
 
-        List<charts.Series<DailyNewCases, String>> series = {
+        List<charts.Series<DailyNewCases, int>> series = [
           charts.Series(
             data: dailyStats,
             id: "Daily Stats",
@@ -63,7 +71,7 @@ class _SpreadTrendsState extends State<SpreadTrends> {
             measureFn: (DailyNewCases series, _) => series.dailyNewCases,
             colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
           )
-        } as List<charts.Series<DailyNewCases, String>>;
+        ];
 
         return DefaultTabController(
           length: 2,
@@ -98,18 +106,36 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               body: TabBarView(
                 children: [
                   ListView(),
-                  ListView(
-                    children: <Widget>[
-                      Container(
-                        child: Expanded(
-                          child: charts.BarChart(
-                            series,
-                            animate: true,
-                          ),
+                  Container(
+                    height: 100,
+                    child: Card(
+                      semanticContainer: true,
+                      elevation: 10,
+                      margin: EdgeInsets.all(5),
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              "Daily New Confirmed Cases",
+                              style: GoogleFonts.montserrat(
+                                textStyle: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black),
+                              ),
+                            ),
+                            Expanded(
+                              child: charts.LineChart(
+                                series,
+                                animate: true,
+                                defaultRenderer: new charts.LineRendererConfig(includePoints: true),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ],
-                  )
+                    ),
+                  ),
                 ],
               ),
             ),
