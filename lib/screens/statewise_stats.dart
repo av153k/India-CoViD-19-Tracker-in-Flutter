@@ -2,8 +2,11 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/services/data_fetcher.dart";
 import "package:covid_india_tracker/models/data_api.dart";
+import "package:covid_india_tracker/models/district_data.dart";
+import "package:covid_india_tracker/services/get_districtData.dart";
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
+DistrictWiseStats _districtWiseStats = new DistrictWiseStats();
 
 class StateWiseStats extends StatefulWidget {
   _StateWiseStats createState() => _StateWiseStats();
@@ -11,8 +14,6 @@ class StateWiseStats extends StatefulWidget {
 
 class _StateWiseStats extends State<StateWiseStats> {
   Future<CovidIndia> stateStats = _covidIndiaStats.getStats();
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +48,54 @@ class _StateWiseStats extends State<StateWiseStats> {
                     child: CircularProgressIndicator(),
                   );
                 }
+                DataTable _getDistricts(index) {
+                  DataRow _getDataRow(index) {
+                    return DataRow(
+                      cells: <DataCell>[
+                        DataCell(
+                          Text(
+                            stateSnapshot.data.statewise[index].state,
+                            style: GoogleFonts.montserrat(),
+                          ),
+                        ),
+                        DataCell(Text(
+                            stateSnapshot.data.statewise[index].confirmed)),
+                        DataCell(
+                            Text(stateSnapshot.data.statewise[index].active)),
+                      ],
+                    );
+                  }
+
+                  return DataTable(
+                    columns: [
+                      DataColumn(
+                        numeric: false,
+                        label: Text(
+                          "Districts",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.purple),
+                          ),
+                        ),
+                      ),
+                      DataColumn(
+                        numeric: true,
+                        label: Text(
+                          "Confirmed",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.red),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }
+
                 DataRow _getDataRow(index) {
                   return DataRow(
                     cells: <DataCell>[
