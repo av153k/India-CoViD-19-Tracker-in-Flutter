@@ -6,7 +6,6 @@ import "package:covid_india_tracker/models/district_data.dart";
 import "package:covid_india_tracker/services/get_districtData.dart";
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
-DistrictWiseStats _districtWiseStats = new DistrictWiseStats();
 
 class StateWiseStats extends StatefulWidget {
   _StateWiseStats createState() => _StateWiseStats();
@@ -46,53 +45,6 @@ class _StateWiseStats extends State<StateWiseStats> {
                 if (stateSnapshot.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(),
-                  );
-                }
-                DataTable _getDistricts(index) {
-                  DataRow _getDataRow(index) {
-                    return DataRow(
-                      cells: <DataCell>[
-                        DataCell(
-                          Text(
-                            stateSnapshot.data.statewise[index].state,
-                            style: GoogleFonts.montserrat(),
-                          ),
-                        ),
-                        DataCell(Text(
-                            stateSnapshot.data.statewise[index].confirmed)),
-                        DataCell(
-                            Text(stateSnapshot.data.statewise[index].active)),
-                      ],
-                    );
-                  }
-
-                  return DataTable(
-                    columns: [
-                      DataColumn(
-                        numeric: false,
-                        label: Text(
-                          "Districts",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.purple),
-                          ),
-                        ),
-                      ),
-                      DataColumn(
-                        numeric: true,
-                        label: Text(
-                          "Confirmed",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.red),
-                          ),
-                        ),
-                      ),
-                    ],
                   );
                 }
 
