@@ -10,16 +10,28 @@ CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 
 class DailyNewCases {
   final int dailyNewCases;
+  final int dailyNewRecovered;
+  final int dailyNewDeaths;
   final String date;
 
-  DailyNewCases({@required this.dailyNewCases, @required this.date});
+  DailyNewCases(
+      {@required this.dailyNewCases,
+      @required this.date,
+      @required this.dailyNewDeaths,
+      @required this.dailyNewRecovered});
 }
 
 class TotalCases {
   final int totalConfirmed;
+  final int totalRecovered;
+  final int totalDeaths;
   final String date;
 
-  TotalCases({@required this.totalConfirmed, @required this.date});
+  TotalCases(
+      {@required this.totalConfirmed,
+      @required this.date,
+      @required this.totalDeaths,
+      @required this.totalRecovered});
 }
 
 class SpreadTrends extends StatefulWidget {
@@ -45,6 +57,10 @@ class _SpreadTrendsState extends State<SpreadTrends> {
           (index) => DailyNewCases(
               dailyNewCases: int.parse(
                   statsSnapshot.data.casesTimeSeries[index].dailyconfirmed),
+              dailyNewDeaths: int.parse(
+                  statsSnapshot.data.casesTimeSeries[index].dailydeceased),
+              dailyNewRecovered: int.parse(
+                  statsSnapshot.data.casesTimeSeries[index].dailyrecovered),
               date: statsSnapshot.data.casesTimeSeries[index].date),
         );
 
@@ -52,7 +68,11 @@ class _SpreadTrendsState extends State<SpreadTrends> {
           statsSnapshot.data.casesTimeSeries.length,
           (index) => TotalCases(
               totalConfirmed: int.parse(
-                  statsSnapshot.data.casesTimeSeries[index].dailyconfirmed),
+                  statsSnapshot.data.casesTimeSeries[index].totalconfirmed),
+              totalDeaths: int.parse(
+                  statsSnapshot.data.casesTimeSeries[index].totaldeceased),
+              totalRecovered: int.parse(
+                  statsSnapshot.data.casesTimeSeries[index].totalrecovered),
               date: statsSnapshot.data.casesTimeSeries[index].date),
         );
 
@@ -64,6 +84,57 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               yValueMapper: (DailyNewCases series, _) => series.dailyNewCases,
               color: Colors.redAccent,
               name: "Daily New Confirmed Cases")
+        ];
+
+        List<BarSeries<DailyNewCases, String>> seriesDND = [
+          BarSeries<DailyNewCases, String>(
+              opacity: 5.0,
+              dataSource: dailyStats,
+              xValueMapper: (DailyNewCases series, _) => series.date,
+              yValueMapper: (DailyNewCases series, _) => series.dailyNewDeaths,
+              color: Colors.grey,
+              name: "Daily New Deaths")
+        ];
+
+        List<BarSeries<DailyNewCases, String>> seriesDNR = [
+          BarSeries<DailyNewCases, String>(
+              opacity: 5.0,
+              dataSource: dailyStats,
+              xValueMapper: (DailyNewCases series, _) => series.date,
+              yValueMapper: (DailyNewCases series, _) =>
+                  series.dailyNewRecovered,
+              color: Colors.greenAccent,
+              name: "Daily New Recoveries")
+        ];
+
+        List<LineSeries<TotalCases, String>> seriesTNC = [
+          LineSeries<TotalCases, String>(
+              opacity: 5.0,
+              dataSource: totalStats,
+              xValueMapper: (TotalCases series, _) => series.date,
+              yValueMapper: (TotalCases series, _) => series.totalConfirmed,
+              color: Colors.redAccent,
+              name: "Total Confirmed Cases")
+        ];
+
+        List<LineSeries<TotalCases, String>> seriesTND = [
+          LineSeries<TotalCases, String>(
+              opacity: 5.0,
+              dataSource: totalStats,
+              xValueMapper: (TotalCases series, _) => series.date,
+              yValueMapper: (TotalCases series, _) => series.totalDeaths,
+              color: Colors.grey,
+              name: "Total Deaths")
+        ];
+
+        List<LineSeries<TotalCases, String>> seriesTNR = [
+          LineSeries<TotalCases, String>(
+              opacity: 5.0,
+              dataSource: totalStats,
+              xValueMapper: (TotalCases series, _) => series.date,
+              yValueMapper: (TotalCases series, _) => series.totalRecovered,
+              color: Colors.greenAccent,
+              name: "Total Recoveries")
         ];
 
         return DefaultTabController(
@@ -98,7 +169,58 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               ),
               body: TabBarView(
                 children: [
-                  ListView(),
+                  Container(
+                    height: 50,
+                    child: Column(
+                      children: <Widget>[
+                        Card(
+                          semanticContainer: true,
+                          elevation: 10,
+                          margin: EdgeInsets.all(5),
+                          child: SfCartesianChart(
+                            primaryXAxis: CategoryAxis(
+                                majorGridLines: MajorGridLines(width: 0)),
+                            primaryYAxis: NumericAxis(
+                              majorGridLines: MajorGridLines(width: 0),
+                            ),
+                            title: ChartTitle(text: "Total Confirmed Cases"),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: seriesTNC,
+                          ),
+                        ),
+                        Card(
+                          semanticContainer: true,
+                          elevation: 10,
+                          margin: EdgeInsets.all(5),
+                          child: SfCartesianChart(
+                            primaryXAxis: CategoryAxis(
+                                majorGridLines: MajorGridLines(width: 0)),
+                            primaryYAxis: NumericAxis(
+                              majorGridLines: MajorGridLines(width: 0),
+                            ),
+                            title: ChartTitle(text: "Total Recoveries"),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: seriesTNR,
+                          ),
+                        ),
+                        Card(
+                          semanticContainer: true,
+                          elevation: 10,
+                          margin: EdgeInsets.all(5),
+                          child: SfCartesianChart(
+                            primaryXAxis: CategoryAxis(
+                                majorGridLines: MajorGridLines(width: 0)),
+                            primaryYAxis: NumericAxis(
+                              majorGridLines: MajorGridLines(width: 0),
+                            ),
+                            title: ChartTitle(text: "Total Deaths"),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: seriesTND,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                   Container(
                     height: 50,
                     child: Column(
@@ -117,6 +239,36 @@ class _SpreadTrendsState extends State<SpreadTrends> {
                                 ChartTitle(text: "Daily New Confirmed Cases"),
                             tooltipBehavior: TooltipBehavior(enable: true),
                             series: seriesDNC,
+                          ),
+                        ),
+                        Card(
+                          semanticContainer: true,
+                          elevation: 10,
+                          margin: EdgeInsets.all(5),
+                          child: SfCartesianChart(
+                            primaryXAxis: CategoryAxis(
+                                majorGridLines: MajorGridLines(width: 0)),
+                            primaryYAxis: NumericAxis(
+                              majorGridLines: MajorGridLines(width: 0),
+                            ),
+                            title: ChartTitle(text: "Daily New Recoveries"),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: seriesDNR,
+                          ),
+                        ),
+                        Card(
+                          semanticContainer: true,
+                          elevation: 10,
+                          margin: EdgeInsets.all(5),
+                          child: SfCartesianChart(
+                            primaryXAxis: CategoryAxis(
+                                majorGridLines: MajorGridLines(width: 0)),
+                            primaryYAxis: NumericAxis(
+                              majorGridLines: MajorGridLines(width: 0),
+                            ),
+                            title: ChartTitle(text: "Daily New Deaths"),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: seriesDND,
                           ),
                         )
                       ],
