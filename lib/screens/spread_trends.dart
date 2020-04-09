@@ -9,7 +9,7 @@ CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 
 class DailyNewCases {
   final int dailyNewCases;
-  final int date;
+  final String date;
 
   DailyNewCases({@required this.dailyNewCases, @required this.date});
 }
@@ -42,17 +42,16 @@ class _SpreadTrendsState extends State<SpreadTrends> {
         final List<DailyNewCases> dailyStats = List.generate(
           10,
           (index) => DailyNewCases(
-            dailyNewCases: int.parse(statsSnapshot
-                .data
-                .casesTimeSeries[
-                    statsSnapshot.data.casesTimeSeries.length - (index + 1)]
-                .dailyconfirmed),
-            date: int.parse(statsSnapshot
-                .data
-                .casesTimeSeries[
-                    statsSnapshot.data.casesTimeSeries.length - (index + 1)]
-                .date),
-          ),
+              dailyNewCases: int.parse(statsSnapshot
+                  .data
+                  .casesTimeSeries[
+                      statsSnapshot.data.casesTimeSeries.length - (index + 1)]
+                  .dailyconfirmed),
+              date: statsSnapshot
+                  .data
+                  .casesTimeSeries[
+                      statsSnapshot.data.casesTimeSeries.length - (index + 1)]
+                  .date),
         );
 
         final List<TotalCases> totalStats = List.generate(
@@ -63,7 +62,7 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               date: statsSnapshot.data.casesTimeSeries[index].date),
         );
 
-        List<charts.Series<DailyNewCases, int>> series = [
+        List<charts.Series<DailyNewCases, String>> series = [
           charts.Series(
             data: dailyStats,
             id: "Daily Stats",
@@ -125,10 +124,9 @@ class _SpreadTrendsState extends State<SpreadTrends> {
                               ),
                             ),
                             Expanded(
-                              child: charts.LineChart(
+                              child: charts.BarChart(
                                 series,
                                 animate: true,
-                                defaultRenderer: new charts.LineRendererConfig(includePoints: true),
                               ),
                             )
                           ],
