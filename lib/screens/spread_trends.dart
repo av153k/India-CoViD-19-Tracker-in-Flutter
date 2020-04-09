@@ -75,19 +75,17 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               date: statsSnapshot.data.casesTimeSeries[index].date),
         );
 
-        List<BarSeries<DailyNewCases, String>> seriesDNC = [
-          BarSeries<DailyNewCases, String>(
-              opacity: 5.0,
+        List<ColumnSeries<DailyNewCases, String>> seriesDNC = [
+          ColumnSeries<DailyNewCases, String>(
               dataSource: dailyStats,
               xValueMapper: (DailyNewCases series, _) => series.date,
               yValueMapper: (DailyNewCases series, _) => series.dailyNewCases,
               color: Colors.redAccent,
-              name: "Daily New Confirmed Cases")
+              name: "Daily New Confirmed Cases"),
         ];
 
-        List<BarSeries<DailyNewCases, String>> seriesDND = [
-          BarSeries<DailyNewCases, String>(
-              opacity: 5.0,
+        List<ColumnSeries<DailyNewCases, String>> seriesDND = [
+          ColumnSeries<DailyNewCases, String>(
               dataSource: dailyStats,
               xValueMapper: (DailyNewCases series, _) => series.date,
               yValueMapper: (DailyNewCases series, _) => series.dailyNewDeaths,
@@ -95,9 +93,8 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               name: "Daily New Deaths")
         ];
 
-        List<BarSeries<DailyNewCases, String>> seriesDNR = [
-          BarSeries<DailyNewCases, String>(
-              opacity: 5.0,
+        List<ColumnSeries<DailyNewCases, String>> seriesDNR = [
+          ColumnSeries<DailyNewCases, String>(
               dataSource: dailyStats,
               xValueMapper: (DailyNewCases series, _) => series.date,
               yValueMapper: (DailyNewCases series, _) =>
@@ -106,9 +103,8 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               name: "Daily New Recoveries")
         ];
 
-        List<LineSeries<TotalCases, String>> seriesTNC = [
-          LineSeries<TotalCases, String>(
-              opacity: 5.0,
+        List< FastLineSeries<TotalCases, String>> seriesTNC = [
+           FastLineSeries<TotalCases, String>(
               dataSource: totalStats,
               xValueMapper: (TotalCases series, _) => series.date,
               yValueMapper: (TotalCases series, _) => series.totalConfirmed,
@@ -116,9 +112,8 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               name: "Total Confirmed Cases")
         ];
 
-        List<LineSeries<TotalCases, String>> seriesTND = [
-          LineSeries<TotalCases, String>(
-              opacity: 5.0,
+        List< FastLineSeries<TotalCases, String>> seriesTND = [
+           FastLineSeries<TotalCases, String>(
               dataSource: totalStats,
               xValueMapper: (TotalCases series, _) => series.date,
               yValueMapper: (TotalCases series, _) => series.totalDeaths,
@@ -126,13 +121,12 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               name: "Total Deaths")
         ];
 
-        List<LineSeries<TotalCases, String>> seriesTNR = [
-          LineSeries<TotalCases, String>(
-              opacity: 5.0,
+        List< FastLineSeries<TotalCases, String>> seriesTNR = [
+           FastLineSeries<TotalCases, String>(
               dataSource: totalStats,
               xValueMapper: (TotalCases series, _) => series.date,
               yValueMapper: (TotalCases series, _) => series.totalRecovered,
-              color: Colors.greenAccent,
+              color: Colors.green,
               name: "Total Recoveries")
         ];
 
@@ -169,107 +163,123 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               body: TabBarView(
                 children: [
                   Container(
-                    height: 50,
-                    child: Column(
+                    child: ListView(
                       children: <Widget>[
-                        Card(
-                          semanticContainer: true,
-                          elevation: 10,
-                          margin: EdgeInsets.all(5),
-                          child: SfCartesianChart(
-                            primaryXAxis: CategoryAxis(
-                                majorGridLines: MajorGridLines(width: 0)),
-                            primaryYAxis: NumericAxis(
-                              majorGridLines: MajorGridLines(width: 0),
+                        Container(
+                          height: 250,
+                          child: Card(
+                            semanticContainer: true,
+                            elevation: 10,
+                            margin: EdgeInsets.all(5),
+                            child: SfCartesianChart(
+                              primaryXAxis: CategoryAxis(
+                                  majorGridLines: MajorGridLines(width: 0)),
+                              primaryYAxis: NumericAxis(
+                                majorGridLines: MajorGridLines(width: 0),
+                              ),
+                              title: ChartTitle(text: "Total Confirmed Cases"),
+                              tooltipBehavior: TooltipBehavior(enable: true),
+                              series: seriesTNC,
                             ),
-                            title: ChartTitle(text: "Total Confirmed Cases"),
-                            tooltipBehavior: TooltipBehavior(enable: true),
-                            series: seriesTNC,
                           ),
                         ),
-                        Card(
-                          semanticContainer: true,
-                          elevation: 10,
-                          margin: EdgeInsets.all(5),
-                          child: SfCartesianChart(
-                            primaryXAxis: CategoryAxis(
-                                majorGridLines: MajorGridLines(width: 0)),
-                            primaryYAxis: NumericAxis(
-                              majorGridLines: MajorGridLines(width: 0),
+                        Container(
+                          height: 250,
+                          child: Card(
+                            semanticContainer: true,
+                            elevation: 10,
+                            margin: EdgeInsets.all(5),
+                            child: SfCartesianChart(
+                              primaryXAxis: CategoryAxis(
+                                  majorGridLines: MajorGridLines(width: 0)),
+                              primaryYAxis: NumericAxis(
+                                majorGridLines: MajorGridLines(width: 0),
+                              ),
+                              title: ChartTitle(text: "Total Recoveries"),
+                              tooltipBehavior: TooltipBehavior(enable: true),
+                              series: seriesTNR,
                             ),
-                            title: ChartTitle(text: "Total Recoveries"),
-                            tooltipBehavior: TooltipBehavior(enable: true),
-                            series: seriesTNR,
                           ),
                         ),
-                        Card(
-                          semanticContainer: true,
-                          elevation: 10,
-                          margin: EdgeInsets.all(5),
-                          child: SfCartesianChart(
-                            primaryXAxis: CategoryAxis(
-                                majorGridLines: MajorGridLines(width: 0)),
-                            primaryYAxis: NumericAxis(
-                              majorGridLines: MajorGridLines(width: 0),
+                        Container(
+                          height: 250,
+                          child: Card(
+                            semanticContainer: true,
+                            elevation: 10,
+                            margin: EdgeInsets.all(5),
+                            child: SfCartesianChart(
+                              primaryXAxis: CategoryAxis(
+                                  majorGridLines: MajorGridLines(width: 0)),
+                              primaryYAxis: NumericAxis(
+                                majorGridLines: MajorGridLines(width: 0),
+                              ),
+                              title: ChartTitle(text: "Total Deaths"),
+                              tooltipBehavior: TooltipBehavior(enable: true),
+                              series: seriesTND,
                             ),
-                            title: ChartTitle(text: "Total Deaths"),
-                            tooltipBehavior: TooltipBehavior(enable: true),
-                            series: seriesTND,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                   Container(
-                    height: 50,
-                    child: Column(
+                    child: ListView(
                       children: <Widget>[
-                        Card(
-                          semanticContainer: true,
-                          elevation: 10,
-                          margin: EdgeInsets.all(5),
-                          child: SfCartesianChart(
-                            primaryXAxis: CategoryAxis(
-                                majorGridLines: MajorGridLines(width: 0)),
-                            primaryYAxis: NumericAxis(
-                              majorGridLines: MajorGridLines(width: 0),
+                        Container(
+                          height: 250,
+                          child: Card(
+                            semanticContainer: true,
+                            elevation: 10,
+                            margin: EdgeInsets.all(5),
+                            child: SfCartesianChart(
+                              primaryXAxis: CategoryAxis(
+                                  majorGridLines: MajorGridLines(width: 0)),
+                              primaryYAxis: NumericAxis(
+                                majorGridLines: MajorGridLines(width: 0),
+                              ),
+                              title:
+                                  ChartTitle(text: "Daily New Confirmed Cases"),
+                              tooltipBehavior: TooltipBehavior(enable: true),
+                              series: seriesDNC,
                             ),
-                            title:
-                                ChartTitle(text: "Daily New Confirmed Cases"),
-                            tooltipBehavior: TooltipBehavior(enable: true),
-                            series: seriesDNC,
                           ),
                         ),
-                        Card(
-                          semanticContainer: true,
-                          elevation: 10,
-                          margin: EdgeInsets.all(5),
-                          child: SfCartesianChart(
-                            primaryXAxis: CategoryAxis(
-                                majorGridLines: MajorGridLines(width: 0)),
-                            primaryYAxis: NumericAxis(
-                              majorGridLines: MajorGridLines(width: 0),
+                        Container(
+                          height: 250,
+                          child: Card(
+                            semanticContainer: true,
+                            elevation: 10,
+                            margin: EdgeInsets.all(5),
+                            child: SfCartesianChart(
+                              primaryXAxis: CategoryAxis(
+                                  majorGridLines: MajorGridLines(width: 0)),
+                              primaryYAxis: NumericAxis(
+                                majorGridLines: MajorGridLines(width: 0),
+                              ),
+                              title: ChartTitle(text: "Daily New Recoveries"),
+                              tooltipBehavior: TooltipBehavior(enable: true),
+                              series: seriesDNR,
                             ),
-                            title: ChartTitle(text: "Daily New Recoveries"),
-                            tooltipBehavior: TooltipBehavior(enable: true),
-                            series: seriesDNR,
                           ),
                         ),
-                        Card(
-                          semanticContainer: true,
-                          elevation: 10,
-                          margin: EdgeInsets.all(5),
-                          child: SfCartesianChart(
-                            primaryXAxis: CategoryAxis(
-                                majorGridLines: MajorGridLines(width: 0)),
-                            primaryYAxis: NumericAxis(
-                              majorGridLines: MajorGridLines(width: 0),
+                        Container(
+                          height: 250,
+                          child: Card(
+                            semanticContainer: true,
+                            elevation: 10,
+                            margin: EdgeInsets.all(5),
+                            child: SfCartesianChart(
+                              primaryXAxis: CategoryAxis(
+                                  majorGridLines: MajorGridLines(width: 0)),
+                              primaryYAxis: NumericAxis(
+                                majorGridLines: MajorGridLines(width: 0),
+                              ),
+                              title: ChartTitle(text: "Daily New Deaths"),
+                              tooltipBehavior: TooltipBehavior(enable: true),
+                              series: seriesDND,
                             ),
-                            title: ChartTitle(text: "Daily New Deaths"),
-                            tooltipBehavior: TooltipBehavior(enable: true),
-                            series: seriesDND,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
