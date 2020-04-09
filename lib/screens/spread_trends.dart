@@ -4,6 +4,7 @@ import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/services/data_fetcher.dart";
 import "package:covid_india_tracker/models/data_api.dart";
 import "package:charts_flutter/flutter.dart" as charts;
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 
@@ -40,18 +41,11 @@ class _SpreadTrendsState extends State<SpreadTrends> {
         }
 
         final List<DailyNewCases> dailyStats = List.generate(
-          10,
+          statsSnapshot.data.casesTimeSeries.length,
           (index) => DailyNewCases(
-              dailyNewCases: int.parse(statsSnapshot
-                  .data
-                  .casesTimeSeries[
-                      statsSnapshot.data.casesTimeSeries.length - (index + 1)]
-                  .dailyconfirmed),
-              date: statsSnapshot
-                  .data
-                  .casesTimeSeries[
-                      statsSnapshot.data.casesTimeSeries.length - (index + 1)]
-                  .date),
+              dailyNewCases: int.parse(
+                  statsSnapshot.data.casesTimeSeries[index].dailyconfirmed),
+              date: statsSnapshot.data.casesTimeSeries[index].date),
         );
 
         final List<TotalCases> totalStats = List.generate(
@@ -62,14 +56,14 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               date: statsSnapshot.data.casesTimeSeries[index].date),
         );
 
-        List<charts.Series<DailyNewCases, String>> series = [
-          charts.Series(
-            data: dailyStats,
-            id: "Daily Stats",
-            domainFn: (DailyNewCases series, _) => series.date,
-            measureFn: (DailyNewCases series, _) => series.dailyNewCases,
-            colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
-          )
+        List<BarSeries<DailyNewCases, String>> seriesDNC = [
+          BarSeries<DailyNewCases, String>(
+              opacity: 5.0,
+              dataSource: dailyStats,
+              xValueMapper: (DailyNewCases series, _) => series.date,
+              yValueMapper: (DailyNewCases series, _) => series.dailyNewCases,
+              color: Colors.redAccent,
+              name: "Daily New Confirmed Cases")
         ];
 
         return DefaultTabController(
@@ -106,32 +100,26 @@ class _SpreadTrendsState extends State<SpreadTrends> {
                 children: [
                   ListView(),
                   Container(
-                    height: 100,
-                    child: Card(
-                      semanticContainer: true,
-                      elevation: 10,
-                      margin: EdgeInsets.all(5),
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "Daily New Confirmed Cases",
-                              style: GoogleFonts.montserrat(
-                                textStyle: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              ),
+                    height: 50,
+                    child: Column(
+                      children: <Widget>[
+                        Card(
+                          semanticContainer: true,
+                          elevation: 10,
+                          margin: EdgeInsets.all(5),
+                          child: SfCartesianChart(
+                            primaryXAxis: CategoryAxis(
+                                majorGridLines: MajorGridLines(width: 0)),
+                            primaryYAxis: NumericAxis(
+                              majorGridLines: MajorGridLines(width: 0),
                             ),
-                            Expanded(
-                              child: charts.BarChart(
-                                series,
-                                animate: true,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                            title:
+                                ChartTitle(text: "Daily New Confirmed Cases"),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: seriesDNC,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ],
