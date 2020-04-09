@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/services/data_fetcher.dart";
 import "package:covid_india_tracker/models/data_api.dart";
-import "package:charts_flutter/flutter.dart" as charts;
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
