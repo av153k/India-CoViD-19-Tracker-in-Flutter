@@ -52,22 +52,54 @@ class _StateWiseStats extends State<StateWiseStats> {
                 DataRow _getDataRow(index) {
                   return DataRow(
                     cells: <DataCell>[
-                      DataCell(
-                        Text(
+                      DataCell(Container(
+                        alignment: Alignment.centerLeft,
+                        width: MediaQuery.of(context).size.width * 0.24,
+                        child: Text(
                           stateSnapshot.data.statewise[index].state,
                           style: GoogleFonts.montserrat(color: Colors.white),
                         ),
+                      )),
+                      DataCell(
+                        Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * 0.17,
+                          child: Text(
+                            stateSnapshot.data.statewise[index].confirmed,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ),
-                      DataCell(Text(
-                          stateSnapshot.data.statewise[index].confirmed,
-                          style: TextStyle(color: Colors.white))),
-                      DataCell(Text(stateSnapshot.data.statewise[index].active,
-                          style: TextStyle(color: Colors.white))),
-                      DataCell(Text(
-                          stateSnapshot.data.statewise[index].recovered,
-                          style: TextStyle(color: Colors.white))),
-                      DataCell(Text(stateSnapshot.data.statewise[index].deaths,
-                          style: TextStyle(color: Colors.white)))
+                      DataCell(
+                        Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * 0.17,
+                          child: Text(
+                            stateSnapshot.data.statewise[index].active,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      DataCell(
+                        Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * 0.17,
+                          child: Text(
+                            stateSnapshot.data.statewise[index].recovered,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      DataCell(
+                        Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * 0.17,
+                          child: Text(
+                            stateSnapshot.data.statewise[index].deaths,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )
                     ],
                   );
                 }
@@ -75,9 +107,9 @@ class _StateWiseStats extends State<StateWiseStats> {
                 return DataTable(
                   headingRowHeight: 50.0,
                   horizontalMargin: 5,
-                  columnSpacing: 1.0,
+                  columnSpacing: 0,
                   sortAscending: true,
-                  dataRowHeight: 30.0,
+                  dataRowHeight: MediaQuery.of(context).size.height*0.08,
                   columns: [
                     DataColumn(
                       numeric: false,
@@ -94,7 +126,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                     DataColumn(
                       numeric: true,
                       label: Text(
-                        "Confirmed",
+                        "Cnfmd",
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                               fontSize: 15,
@@ -106,7 +138,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                     DataColumn(
                       numeric: true,
                       label: Text(
-                        "Active",
+                        "Actv",
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                               fontSize: 15,
@@ -118,7 +150,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                     DataColumn(
                       numeric: true,
                       label: Text(
-                        "Recovered",
+                        "Rcvrd",
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                               fontSize: 15,
@@ -130,7 +162,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                     DataColumn(
                       numeric: true,
                       label: Text(
-                        "Deaths",
+                        "Dcsd",
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                               fontSize: 15,
