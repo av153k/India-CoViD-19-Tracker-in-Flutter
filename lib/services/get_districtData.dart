@@ -10,7 +10,7 @@ class DistrictWiseStats {
     var res = await http.get("https://api.covid19india.org/v2/state_district_wise.json");
     var decodedJson = jsonDecode(res.body);
 
-    Districts districtStats = Districts.fromJson(decodedJson);
+    Districts districtStats = Districts.fromJson(decodedJson[0]);
 
     return districtStats;
   }

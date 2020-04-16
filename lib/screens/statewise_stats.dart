@@ -2,8 +2,7 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/services/data_fetcher.dart";
 import "package:covid_india_tracker/models/data_api.dart";
-import "package:covid_india_tracker/models/district_data.dart";
-import "package:covid_india_tracker/services/get_districtData.dart";
+import "package:covid_india_tracker/screens/single_state_data.dart";
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 
@@ -52,14 +51,31 @@ class _StateWiseStats extends State<StateWiseStats> {
                 DataRow _getDataRow(index) {
                   return DataRow(
                     cells: <DataCell>[
-                      DataCell(Container(
-                        alignment: Alignment.centerLeft,
-                        width: MediaQuery.of(context).size.width * 0.24,
-                        child: Text(
-                          stateSnapshot.data.statewise[index].state,
-                          style: GoogleFonts.montserrat(color: Colors.white),
+                      DataCell(
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SingleState(
+                                  state:
+                                      stateSnapshot.data.statewise[index].state,
+                                  stateIndex: index,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: MediaQuery.of(context).size.width * 0.24,
+                            child: Text(
+                              stateSnapshot.data.statewise[index].state,
+                              style:
+                                  GoogleFonts.montserrat(color: Colors.white),
+                            ),
+                          ),
                         ),
-                      )),
+                      ),
                       DataCell(
                         Container(
                           alignment: Alignment.center,
@@ -109,7 +125,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                   horizontalMargin: 5,
                   columnSpacing: 0,
                   sortAscending: true,
-                  dataRowHeight: MediaQuery.of(context).size.height*0.08,
+                  dataRowHeight: MediaQuery.of(context).size.height * 0.08,
                   columns: [
                     DataColumn(
                       numeric: false,
