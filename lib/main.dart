@@ -15,9 +15,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff212F3D),
         appBar: AppBar(
-          backgroundColor: Colors.black87,
+          backgroundColor: Color(0xff212F3D),
           title: Text(
             "India CoViD-19 Tracker",
             style: GoogleFonts.montserrat(

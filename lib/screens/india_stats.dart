@@ -48,6 +48,7 @@ class _IndiaStats extends State<IndiaStats> {
                 style: GoogleFonts.montserrat(
                   textStyle:
                       TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
+                  color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -177,6 +178,7 @@ class _IndiaStats extends State<IndiaStats> {
                 "Last updated at : ${dataSnapshot.data.statewise[0].lastupdatedtime}",
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
+                  color: Colors.white,
                 ),
               ),
             ),

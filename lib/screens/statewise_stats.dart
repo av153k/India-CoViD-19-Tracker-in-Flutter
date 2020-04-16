@@ -18,6 +18,7 @@ class _StateWiseStats extends State<StateWiseStats> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Color(0xff212F3D),
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -25,7 +26,7 @@ class _StateWiseStats extends State<StateWiseStats> {
               Navigator.pop(context);
             },
           ),
-          backgroundColor: Colors.black87,
+          backgroundColor: Color(0xff212F3D),
           title: Text(
             "StateWise Stats",
             style: GoogleFonts.montserrat(
@@ -54,16 +55,19 @@ class _StateWiseStats extends State<StateWiseStats> {
                       DataCell(
                         Text(
                           stateSnapshot.data.statewise[index].state,
-                          style: GoogleFonts.montserrat(),
+                          style: GoogleFonts.montserrat(color: Colors.white),
                         ),
                       ),
-                      DataCell(
-                          Text(stateSnapshot.data.statewise[index].confirmed)),
-                      DataCell(
-                          Text(stateSnapshot.data.statewise[index].active)),
-                      DataCell(
-                          Text(stateSnapshot.data.statewise[index].recovered)),
-                      DataCell(Text(stateSnapshot.data.statewise[index].deaths))
+                      DataCell(Text(
+                          stateSnapshot.data.statewise[index].confirmed,
+                          style: TextStyle(color: Colors.white))),
+                      DataCell(Text(stateSnapshot.data.statewise[index].active,
+                          style: TextStyle(color: Colors.white))),
+                      DataCell(Text(
+                          stateSnapshot.data.statewise[index].recovered,
+                          style: TextStyle(color: Colors.white))),
+                      DataCell(Text(stateSnapshot.data.statewise[index].deaths,
+                          style: TextStyle(color: Colors.white)))
                     ],
                   );
                 }
@@ -119,7 +123,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                           textStyle: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,
-                              color: Colors.purple),
+                              color: Colors.green),
                         ),
                       ),
                     ),
@@ -131,7 +135,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                           textStyle: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,
-                              color: Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     )
