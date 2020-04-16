@@ -25,7 +25,7 @@ class _StateWiseStats extends State<StateWiseStats> {
               Navigator.pop(context);
             },
           ),
-          backgroundColor: Color(0xff212F3D),
+          backgroundColor: Color(0xff17202a),
           title: Text(
             "StateWise Stats",
             style: GoogleFonts.montserrat(

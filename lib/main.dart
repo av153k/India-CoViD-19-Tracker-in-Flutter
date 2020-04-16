@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
         backgroundColor: Color(0xff212F3D),
         appBar: AppBar(
-          backgroundColor: Color(0xff212F3D),
+          backgroundColor: Color(0xff17202a),
           title: Text(
             "India CoViD-19 Tracker",
             style: GoogleFonts.montserrat(

@@ -37,7 +37,7 @@ class _SingleState extends State<SingleState> {
             },
           ),
           title: Text(widget.state),
-          backgroundColor: Color(0xff212F3D),
+          backgroundColor: Color(0xff17202a),
         ),
         body: FutureBuilder(
           future: singleState,
