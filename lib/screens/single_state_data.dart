@@ -20,7 +20,9 @@ class SingleState extends StatefulWidget {
 
 class _SingleState extends State<SingleState> {
   Future<CovidIndia> singleState = _covidIndiaStats.getStats();
-  Future<Districts> districts = _districWiseStats.getStats();
+  Future<List<DistrictData>> getData() {
+    return _districWiseStats.getStats(widget.state);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -198,9 +200,9 @@ class _SingleState extends State<SingleState> {
                   ],
                 ),
                 FutureBuilder(
-                  future: districts,
+                  future: getData(),
                   builder: (BuildContext context,
-                      AsyncSnapshot<Districts> districtsSnap) {
+                      AsyncSnapshot<List<DistrictData>> districtsSnap) {
                     if (districtsSnap.connectionState ==
                         ConnectionState.waiting) {
                       return Center(child: CircularProgressIndicator());
@@ -210,18 +212,24 @@ class _SingleState extends State<SingleState> {
                       return DataRow(
                         cells: <DataCell>[
                           DataCell(
-                            Text(districtsSnap
-                                .data.districtData[widget.stateIndex].district),
+                            Text(
+                              districtsSnap.data[index].district,
+                              style:
+                                  GoogleFonts.montserrat(color: Colors.white),
+                            ),
                           ),
                           DataCell(
                             Text(
-                                "${districtsSnap.data.districtData[widget.stateIndex].confirmed}"),
+                              "${districtsSnap.data[index].confirmed}",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           )
                         ],
                       );
                     }
 
                     return Container(
+                      margin: EdgeInsets.only(top: 20),
                       child: DataTable(
                         columns: [
                           DataColumn(
@@ -249,7 +257,7 @@ class _SingleState extends State<SingleState> {
                           ),
                         ],
                         rows: List.generate(
-                          districtsSnap.data.districtData.length,
+                          districtsSnap.data.length,
                           (index) => _getRows(index),
                         ),
                       ),

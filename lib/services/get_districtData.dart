@@ -6,12 +6,15 @@ import "dart:convert";
 class DistrictWiseStats {
   DistrictWiseStats();
 
-  Future<Districts> getStats() async {
-    var res = await http.get("https://api.covid19india.org/v2/state_district_wise.json");
+  Future<List<DistrictData>> getStats(String state) async {
+    var res = await http
+        .get("https://api.covid19india.org/v2/state_district_wise.json");
     var decodedJson = jsonDecode(res.body);
 
-    Districts districtStats = Districts.fromJson(decodedJson[0]);
-
-    return districtStats;
+    for (var i = 0; i <= 33; i++) {
+      if (Districts.fromJson(decodedJson[i]).state == state) {
+        return Districts.fromJson(decodedJson[i]).districtData;
+      }
+    }
   }
 }
