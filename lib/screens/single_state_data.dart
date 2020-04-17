@@ -11,7 +11,7 @@ DistrictWiseStats _districWiseStats = new DistrictWiseStats();
 class DistrictsStats {
   String name;
   int confirmed;
-  Delta deltaConfirmed;
+  int deltaConfirmed;
   DistrictsStats({this.name, this.confirmed, this.deltaConfirmed});
 }
 
@@ -227,28 +227,40 @@ class _SingleState extends State<SingleState> {
                         DistrictsStats(
                             name: districtsSnap.data[i].district,
                             confirmed: districtsSnap.data[i].confirmed,
-                            deltaConfirmed: districtsSnap.data[i].delta),
+                            deltaConfirmed:
+                                districtsSnap.data[i].delta.confirmed),
                       );
                     }
 
-                    DataRow _getRows(index) {
-                      return DataRow(
-                        cells: <DataCell>[
-                          DataCell(
+                    Row finalConfirmed(int index) {
+                      if (_districts[index].deltaConfirmed != 0) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
                             Text(
-                              districtsSnap.data[index].district,
-                              style:
-                                  GoogleFonts.montserrat(color: Colors.white),
+                              "\u{2B06}${_districts[index].deltaConfirmed}  ",
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
-                          DataCell(
                             Text(
-                              "${districtsSnap.data[index].confirmed}",
+                              "${_districts[index].confirmed}",
                               style: TextStyle(color: Colors.white),
                             ),
-                          )
-                        ],
-                      );
+                          ],
+                        );
+                      } else {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              '${_districts[index].confirmed}',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        );
+                      }
                     }
 
                     var dataColumns = [
@@ -318,12 +330,7 @@ class _SingleState extends State<SingleState> {
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
-                          DataCell(
-                            Text(
-                              '${_districts[index].confirmed}',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
+                          DataCell(finalConfirmed(index))
                         ],
                       ),
                     );
