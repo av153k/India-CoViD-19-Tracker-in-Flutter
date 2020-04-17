@@ -11,7 +11,17 @@ class StateWiseStats extends StatefulWidget {
 }
 
 class _StateWiseStats extends State<StateWiseStats> {
-  Future<CovidIndia> stateStats = _covidIndiaStats.getStats();
+  Future<CovidIndia> stateStats;
+
+  Future<CovidIndia> getStateData() {
+    return _covidIndiaStats.getStats();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    stateStats = getStateData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +51,29 @@ class _StateWiseStats extends State<StateWiseStats> {
             Container(
               height: 70,
               alignment: Alignment(0.001, 0.2),
-              child: Text(
-                "StateWise Stats",
-                style: GoogleFonts.montserrat(
-                  textStyle:
-                      TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "StateWise Stats",
+                    style: GoogleFonts.montserrat(
+                      textStyle:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.refresh, color: Colors.white),
+                    onPressed: () {
+                      setState(
+                        () {
+                          stateStats = getStateData();
+                        },
+                      );
+                    },
+                  )
+                ],
               ),
             ),
             Container(
