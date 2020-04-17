@@ -220,9 +220,9 @@ class _SingleState extends State<SingleState> {
                     bool _sortAsc = true;
                     int _sortColumnIndex;
 
-                    List<DistrictsStats> _districts;
+                    List<DistrictsStats> _districts = List<DistrictsStats>();
 
-                    for (var i = 0; i <= districtsSnap.data.length; i++) {
+                    for (var i = 0; i < districtsSnap.data.length; i++) {
                       _districts.add(
                         DistrictsStats(
                             name: districtsSnap.data[i].district,
@@ -308,23 +308,35 @@ class _SingleState extends State<SingleState> {
                         },
                       ),
                     ];
-                    var dataRows = _districts.map(
-                      (district) {
-                        return DataRow(cells: [
-                          DataCell(Text(district.name)),
-                          DataCell(Text('${district.confirmed}')),
-                        ]);
-                      },
+                    var dataRows = List.generate(
+                      _districts.length,
+                      (index) => new DataRow(
+                        cells: [
+                          DataCell(
+                            Text(
+                              _districts[index].name,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              '${_districts[index].confirmed}',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
                     );
 
                     return Container(
-                        margin: EdgeInsets.all(20.0),
-                        child: DataTable(
-                          columns: dataColumns,
-                          rows: dataRows,
-                          sortColumnIndex: _sortColumnIndex,
-                          sortAscending: _sortAsc,
-                        ));
+                      margin: EdgeInsets.all(20.0),
+                      child: DataTable(
+                        columns: dataColumns,
+                        rows: dataRows,
+                        sortColumnIndex: _sortColumnIndex,
+                        sortAscending: _sortAsc,
+                      ),
+                    );
                   },
                 )
               ],
