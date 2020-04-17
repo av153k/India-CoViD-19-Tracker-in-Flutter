@@ -26,9 +26,22 @@ class SingleState extends StatefulWidget {
 }
 
 class _SingleState extends State<SingleState> {
-  Future<CovidIndia> singleState = _covidIndiaStats.getStats();
+  Future<CovidIndia> singleState;
+  Future<CovidIndia> getSingleStateData() {
+    return _covidIndiaStats.getStats();
+  }
+
   Future<List<DistrictData>> getData() {
     return _districWiseStats.getStats(widget.state);
+  }
+
+  Future<List<DistrictData>> districts;
+
+  @override
+  void initState() {
+    super.initState();
+    singleState = getSingleStateData();
+    districts = getData();
   }
 
   @override
@@ -78,14 +91,33 @@ class _SingleState extends State<SingleState> {
                 Container(
                   height: 70,
                   alignment: Alignment(0.001, 0.2),
-                  child: Text(
-                    "${widget.state} Stats",
-                    style: GoogleFonts.montserrat(
-                      textStyle:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "${widget.state} Stats",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 23),
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.refresh,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          setState(
+                            () {
+                              singleState = getSingleStateData();
+                              districts = getData();
+                            },
+                          );
+                        },
+                      )
+                    ],
                   ),
                 ),
                 Row(
@@ -207,7 +239,7 @@ class _SingleState extends State<SingleState> {
                   ],
                 ),
                 FutureBuilder(
-                  future: getData(),
+                  future: districts,
                   builder: (BuildContext context,
                       AsyncSnapshot<List<DistrictData>> districtsSnap) {
                     if (districtsSnap.connectionState ==
