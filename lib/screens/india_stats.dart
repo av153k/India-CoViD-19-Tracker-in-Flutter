@@ -61,7 +61,7 @@ class _IndiaStats extends State<IndiaStats> {
                       "India CoViD-19 Stats",
                       style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 30),
+                            fontWeight: FontWeight.w300, fontSize: 30),
                         color: Colors.white,
                       ),
                       textAlign: TextAlign.center,
@@ -92,7 +92,7 @@ class _IndiaStats extends State<IndiaStats> {
                       style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                               color: Colors.red,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                               fontSize: 18)),
                       textAlign: TextAlign.center,
                     ),
@@ -100,14 +100,14 @@ class _IndiaStats extends State<IndiaStats> {
                       "+$confirmedCasesDelta",
                       style: TextStyle(
                           color: Colors.red,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontSize: 14),
                     ),
                     Text(
                       "$confirmedCases",
                       style: TextStyle(
                           color: Colors.red,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontSize: 17),
                     ),
                   ],
@@ -120,7 +120,7 @@ class _IndiaStats extends State<IndiaStats> {
                       style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                               color: Colors.blue,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                               fontSize: 18)),
                       textAlign: TextAlign.center,
                     ),
@@ -128,14 +128,14 @@ class _IndiaStats extends State<IndiaStats> {
                       " ",
                       style: TextStyle(
                           color: Colors.blue,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontSize: 14),
                     ),
                     Text(
                       "$activeCases",
                       style: TextStyle(
                           color: Colors.blue,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontSize: 17),
                     )
                   ],
@@ -148,7 +148,7 @@ class _IndiaStats extends State<IndiaStats> {
                       style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                               color: Colors.green,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                               fontSize: 18)),
                       textAlign: TextAlign.center,
                     ),
@@ -156,14 +156,14 @@ class _IndiaStats extends State<IndiaStats> {
                       "+$recoveredCasesDelta",
                       style: TextStyle(
                           color: Colors.green,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontSize: 14),
                     ),
                     Text(
                       "$recoveredCases",
                       style: TextStyle(
                           color: Colors.green,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontSize: 17),
                     ),
                   ],
@@ -177,21 +177,21 @@ class _IndiaStats extends State<IndiaStats> {
                           textStyle: TextStyle(
                               color: Colors.grey,
                               fontSize: 18,
-                              fontWeight: FontWeight.w500)),
+                              fontWeight: FontWeight.w300)),
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       "+$deceasedCasesDelta",
                       style: TextStyle(
                           color: Colors.grey,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontSize: 14),
                     ),
                     Text(
                       "$deceasedCases",
                       style: TextStyle(
                           color: Colors.grey,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontSize: 17),
                     )
                   ],

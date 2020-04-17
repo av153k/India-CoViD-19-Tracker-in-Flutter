@@ -99,7 +99,7 @@ class _SingleState extends State<SingleState> {
                         "${widget.state} Stats",
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 23),
+                              fontWeight: FontWeight.w300, fontSize: 23),
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
@@ -133,7 +133,7 @@ class _SingleState extends State<SingleState> {
                           style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
                                   color: Colors.red,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w300,
                                   fontSize: 18)),
                           textAlign: TextAlign.center,
                         ),
@@ -141,14 +141,14 @@ class _SingleState extends State<SingleState> {
                           "+$confirmedDelta",
                           style: TextStyle(
                               color: Colors.red,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w300,
                               fontSize: 14),
                         ),
                         Text(
                           confirmed,
                           style: TextStyle(
                               color: Colors.red,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w300,
                               fontSize: 17),
                         ),
                       ],
@@ -161,7 +161,7 @@ class _SingleState extends State<SingleState> {
                           style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
                                   color: Colors.blue,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w300,
                                   fontSize: 18)),
                           textAlign: TextAlign.center,
                         ),
@@ -169,14 +169,14 @@ class _SingleState extends State<SingleState> {
                           " ",
                           style: TextStyle(
                               color: Colors.blue,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w300,
                               fontSize: 14),
                         ),
                         Text(
                           active,
                           style: TextStyle(
                               color: Colors.blue,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w300,
                               fontSize: 17),
                         )
                       ],
@@ -189,7 +189,7 @@ class _SingleState extends State<SingleState> {
                           style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
                                   color: Colors.green,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w300,
                                   fontSize: 18)),
                           textAlign: TextAlign.center,
                         ),
@@ -197,14 +197,14 @@ class _SingleState extends State<SingleState> {
                           "+$recoveredDelta",
                           style: TextStyle(
                               color: Colors.green,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w300,
                               fontSize: 14),
                         ),
                         Text(
                           recovered,
                           style: TextStyle(
                               color: Colors.green,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w300,
                               fontSize: 17),
                         ),
                       ],
@@ -218,21 +218,21 @@ class _SingleState extends State<SingleState> {
                               textStyle: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 18,
-                                  fontWeight: FontWeight.w500)),
+                                  fontWeight: FontWeight.w300)),
                           textAlign: TextAlign.center,
                         ),
                         Text(
                           "+$deathsDelta",
                           style: TextStyle(
                               color: Colors.grey,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w300,
                               fontSize: 14),
                         ),
                         Text(
                           deaths,
                           style: TextStyle(
                               color: Colors.grey,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w300,
                               fontSize: 17),
                         )
                       ],
