@@ -11,7 +11,17 @@ class IndiaStats extends StatefulWidget {
 }
 
 class _IndiaStats extends State<IndiaStats> {
-  Future<CovidIndia> asIndiaStats = _covidIndiaStats.getStats();
+  Future<CovidIndia> asIndiaStats;
+
+  Future<CovidIndia> getIndiaStats() {
+    return _covidIndiaStats.getStats();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    asIndiaStats = getIndiaStats();
+  }
 
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -41,18 +51,35 @@ class _IndiaStats extends State<IndiaStats> {
           scrollDirection: Axis.vertical,
           children: <Widget>[
             Container(
-              height: 70,
-              alignment: Alignment(0.001, 0.2),
-              child: Text(
-                "India CoViD-19 Stats",
-                style: GoogleFonts.montserrat(
-                  textStyle:
-                      TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
+              margin: EdgeInsets.all(5),
+                height: 70,
+                alignment: Alignment(0.001, 0.2),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "India CoViD-19 Stats",
+                      style: GoogleFonts.montserrat(
+                        textStyle: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 30),
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.refresh,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          asIndiaStats = getIndiaStats();
+                        });
+                      },
+                    )
+                  ],
+                )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[

@@ -53,7 +53,7 @@ class _SingleState extends State<SingleState> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.of(context).pop('String');
+              Navigator.pop(context);
             },
           ),
           title: Text(widget.state),
@@ -89,6 +89,7 @@ class _SingleState extends State<SingleState> {
               scrollDirection: Axis.vertical,
               children: <Widget>[
                 Container(
+                  margin: EdgeInsets.all(5),
                   height: 70,
                   alignment: Alignment(0.001, 0.2),
                   child: Row(

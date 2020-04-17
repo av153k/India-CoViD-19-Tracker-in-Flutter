@@ -49,6 +49,7 @@ class _StateWiseStats extends State<StateWiseStats> {
           scrollDirection: Axis.vertical,
           children: <Widget>[
             Container(
+              margin: EdgeInsets.all(5),
               height: 70,
               alignment: Alignment(0.001, 0.2),
               child: Row(
@@ -201,10 +202,6 @@ class _StateWiseStats extends State<StateWiseStats> {
                                   stateIndex: index,
                                 ),
                               ),
-                            ).then(
-                              (String value) {
-                                print(value);
-                              },
                             );
                           },
                           child: Container(
