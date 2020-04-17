@@ -40,7 +40,7 @@ class _SingleState extends State<SingleState> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.of(context).pop('String');
             },
           ),
           title: Text(widget.state),
@@ -285,7 +285,7 @@ class _SingleState extends State<SingleState> {
                               }
                               _districts
                                   .sort((a, b) => a.name.compareTo(b.name));
-                              if (!sortAscending) {
+                              if (!_sortAsc) {
                                 _districts = _districts.reversed.toList();
                               }
                             },
@@ -313,7 +313,7 @@ class _SingleState extends State<SingleState> {
                             }
                             _districts.sort(
                                 (a, b) => a.confirmed.compareTo(b.confirmed));
-                            if (!sortAscending) {
+                            if (!_sortAsc) {
                               _districts = _districts.reversed.toList();
                             }
                           });

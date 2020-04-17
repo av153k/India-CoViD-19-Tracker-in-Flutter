@@ -169,13 +169,17 @@ class _StateWiseStats extends State<StateWiseStats> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
+                              MaterialPageRoute<String>(
                                 builder: (context) => SingleState(
                                   state:
                                       stateSnapshot.data.statewise[index].state,
                                   stateIndex: index,
                                 ),
                               ),
+                            ).then(
+                              (String value) {
+                                print(value);
+                              },
                             );
                           },
                           child: Container(
