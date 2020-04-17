@@ -8,6 +8,13 @@ import "package:covid_india_tracker/services/get_districtData.dart";
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 DistrictWiseStats _districWiseStats = new DistrictWiseStats();
 
+class DistrictsStats {
+  String name;
+  int confirmed;
+  Delta deltaConfirmed;
+  DistrictsStats({this.name, this.confirmed, this.deltaConfirmed});
+}
+
 class SingleState extends StatefulWidget {
   final String state;
   final int stateIndex;
@@ -208,6 +215,22 @@ class _SingleState extends State<SingleState> {
                       return Center(child: CircularProgressIndicator());
                     }
 
+                    bool _sortNameAsc = true;
+                    bool _sortConfirmedAsc = true;
+                    bool _sortAsc = true;
+                    int _sortColumnIndex;
+
+                    List<DistrictsStats> _districts;
+
+                    for (var i = 0; i <= districtsSnap.data.length; i++) {
+                      _districts.add(
+                        DistrictsStats(
+                            name: districtsSnap.data[i].district,
+                            confirmed: districtsSnap.data[i].confirmed,
+                            deltaConfirmed: districtsSnap.data[i].delta),
+                      );
+                    }
+
                     DataRow _getRows(index) {
                       return DataRow(
                         cells: <DataCell>[
@@ -228,40 +251,80 @@ class _SingleState extends State<SingleState> {
                       );
                     }
 
-                    return Container(
-                      margin: EdgeInsets.only(top: 20),
-                      child: DataTable(
-                        columns: [
-                          DataColumn(
-                            label: Text(
-                              "District",
-                              style: GoogleFonts.montserrat(
-                                textStyle: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.purple),
-                              ),
-                            ),
+                    var dataColumns = [
+                      DataColumn(
+                        label: Text(
+                          "District",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.purple),
                           ),
-                          DataColumn(
-                            numeric: true,
-                            label: Text(
-                              "Confirmed",
-                              style: GoogleFonts.montserrat(
-                                textStyle: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.red),
-                              ),
-                            ),
-                          ),
-                        ],
-                        rows: List.generate(
-                          districtsSnap.data.length,
-                          (index) => _getRows(index),
                         ),
+                        onSort: (columnIndex, sortAscending) {
+                          setState(
+                            () {
+                              if (columnIndex == _sortColumnIndex) {
+                                _sortAsc = _sortNameAsc = sortAscending;
+                              } else {
+                                _sortColumnIndex = columnIndex;
+                                _sortAsc = _sortNameAsc;
+                              }
+                              _districts
+                                  .sort((a, b) => a.name.compareTo(b.name));
+                              if (!sortAscending) {
+                                _districts = _districts.reversed.toList();
+                              }
+                            },
+                          );
+                        },
                       ),
+                      DataColumn(
+                        numeric: true,
+                        label: Text(
+                          "Confirmed",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.red),
+                          ),
+                        ),
+                        onSort: (columnIndex, sortAscending) {
+                          setState(() {
+                            if (columnIndex == _sortColumnIndex) {
+                              _sortAsc = _sortConfirmedAsc = sortAscending;
+                            } else {
+                              _sortColumnIndex = columnIndex;
+                              _sortAsc = _sortConfirmedAsc;
+                            }
+                            _districts.sort(
+                                (a, b) => a.confirmed.compareTo(b.confirmed));
+                            if (!sortAscending) {
+                              _districts = _districts.reversed.toList();
+                            }
+                          });
+                        },
+                      ),
+                    ];
+                    var dataRows = _districts.map(
+                      (district) {
+                        return DataRow(cells: [
+                          DataCell(Text(district.name)),
+                          DataCell(Text('${district.confirmed}')),
+                        ]);
+                      },
                     );
+
+                    return Container(
+                        margin: EdgeInsets.all(20.0),
+                        child: DataTable(
+                          columns: dataColumns,
+                          rows: dataRows,
+                          sortColumnIndex: _sortColumnIndex,
+                          sortAscending: _sortAsc,
+                        ));
                   },
                 )
               ],
