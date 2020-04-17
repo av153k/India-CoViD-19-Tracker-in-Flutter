@@ -38,6 +38,30 @@ class _StateWiseStats extends State<StateWiseStats> {
           padding: EdgeInsets.all(5),
           scrollDirection: Axis.vertical,
           children: <Widget>[
+            Container(
+              height: 70,
+              alignment: Alignment(0.001, 0.2),
+              child: Text(
+                "StateWise Stats",
+                style: GoogleFonts.montserrat(
+                  textStyle:
+                      TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Container(
+              height: 30.0,
+              alignment: Alignment(0.005, 0.2),
+              child: Text(
+                "[Tap on the state name to see details]",
+                style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  color: Colors.white,
+                ),
+              ),
+            ),
             FutureBuilder(
               future: stateStats,
               builder: (BuildContext context,
