@@ -362,8 +362,6 @@ class _SingleState extends State<SingleState> {
                         child: DataTable(
                           columns: dataColumns,
                           rows: dataRows,
-                          sortColumnIndex: 1,
-                          sortAscending: _sortAsc,
                         ),
                       ),
                     );
