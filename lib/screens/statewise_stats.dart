@@ -59,7 +59,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                     "StateWise Stats",
                     style: GoogleFonts.montserrat(
                       textStyle:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
+                          TextStyle(fontWeight: FontWeight.w300, fontSize: 23),
                       color: Colors.white,
                     ),
                     textAlign: TextAlign.center,

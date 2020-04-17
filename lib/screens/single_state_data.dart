@@ -27,6 +27,7 @@ class SingleState extends StatefulWidget {
 
 class _SingleState extends State<SingleState> {
   Future<CovidIndia> singleState;
+
   Future<CovidIndia> getSingleStateData() {
     return _covidIndiaStats.getStats();
   }
@@ -248,10 +249,7 @@ class _SingleState extends State<SingleState> {
                       return Center(child: CircularProgressIndicator());
                     }
 
-                    bool _sortNameAsc = true;
-                    bool _sortConfirmedAsc = true;
-                    bool _sortAsc = true;
-                    int _sortColumnIndex;
+                    bool _sortAsc = false;
 
                     List<DistrictsStats> _districts = List<DistrictsStats>();
 
@@ -265,20 +263,34 @@ class _SingleState extends State<SingleState> {
                       );
                     }
 
-                    Row finalConfirmed(int index) {
-                      if (_districts[index].deltaConfirmed != 0) {
+                    onSortColumn(int columnIndex, bool ascending) {
+                      if (columnIndex == 0) {
+                        if (ascending) {
+                          _districts
+                            ..sort(
+                                (a, b) => a.confirmed.compareTo(b.confirmed));
+                        } else {
+                          _districts
+                            ..sort(
+                                (a, b) => b.confirmed.compareTo(a.confirmed));
+                        }
+                      }
+                    }
+
+                    Row finalConfirmed(DistrictsStats district) {
+                      if (district.deltaConfirmed != 0) {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Text(
-                              "\u{2B06} ${_districts[index].deltaConfirmed}  ",
+                              "\u{2B06} ${district.deltaConfirmed}  ",
                               style: TextStyle(
                                 color: Colors.red,
                                 fontSize: 13,
                               ),
                             ),
                             Text(
-                              "${_districts[index].confirmed}",
+                              "${district.confirmed}",
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
@@ -288,7 +300,7 @@ class _SingleState extends State<SingleState> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Text(
-                              '${_districts[index].confirmed}',
+                              '${district.confirmed}',
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
@@ -307,66 +319,40 @@ class _SingleState extends State<SingleState> {
                                 color: Colors.purple),
                           ),
                         ),
-                        onSort: (columnIndex, sortAscending) {
-                          setState(
-                            () {
-                              if (columnIndex == _sortColumnIndex) {
-                                _sortAsc = _sortNameAsc = sortAscending;
-                              } else {
-                                _sortColumnIndex = columnIndex;
-                                _sortAsc = _sortNameAsc;
-                              }
-                              _districts
-                                  .sort((a, b) => a.name.compareTo(b.name));
-                              if (!_sortAsc) {
-                                _districts = _districts.reversed.toList();
-                              }
-                            },
-                          );
-                        },
                       ),
                       DataColumn(
-                        numeric: true,
-                        label: Text(
-                          "Confirmed",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.red),
-                          ),
-                        ),
-                        onSort: (columnIndex, sortAscending) {
-                          setState(() {
-                            if (columnIndex == _sortColumnIndex) {
-                              _sortAsc = _sortConfirmedAsc = sortAscending;
-                            } else {
-                              _sortColumnIndex = columnIndex;
-                              _sortAsc = _sortConfirmedAsc;
-                            }
-                            _districts.sort(
-                                (a, b) => a.confirmed.compareTo(b.confirmed));
-                            if (!_sortAsc) {
-                              _districts = _districts.reversed.toList();
-                            }
-                          });
-                        },
-                      ),
-                    ];
-                    var dataRows = List.generate(
-                      _districts.length,
-                      (index) => new DataRow(
-                        cells: [
-                          DataCell(
-                            Text(
-                              _districts[index].name,
-                              style: TextStyle(color: Colors.white),
+                          numeric: true,
+                          label: Text(
+                            "Confirmed",
+                            style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.red),
                             ),
                           ),
-                          DataCell(finalConfirmed(index))
-                        ],
-                      ),
-                    );
+                          onSort: (columnIndex, ascending) {
+                            setState(() {
+                              _sortAsc = !_sortAsc;
+                            });
+                            onSortColumn(columnIndex, ascending);
+                          }),
+                    ];
+                    var dataRows = _districts
+                        .map(
+                          (district) => DataRow(
+                            cells: [
+                              DataCell(
+                                Text(
+                                  district.name,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              DataCell(finalConfirmed(district))
+                            ],
+                          ),
+                        )
+                        .toList();
 
                     return Container(
                       margin: EdgeInsets.all(20.0),
@@ -376,7 +362,7 @@ class _SingleState extends State<SingleState> {
                         child: DataTable(
                           columns: dataColumns,
                           rows: dataRows,
-                          sortColumnIndex: _sortColumnIndex,
+                          sortColumnIndex: 1,
                           sortAscending: _sortAsc,
                         ),
                       ),
