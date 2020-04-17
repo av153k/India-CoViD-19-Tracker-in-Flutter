@@ -71,6 +71,95 @@ class _StateWiseStats extends State<StateWiseStats> {
                     child: CircularProgressIndicator(),
                   );
                 }
+                Column finalConfirmed(int index) {
+                  if (int.parse(
+                          stateSnapshot.data.statewise[index].deltaconfirmed) !=
+                      0) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text(
+                          "\u{2B06}${stateSnapshot.data.statewise[index].deltaconfirmed}",
+                          style: TextStyle(color: Colors.red, fontSize: 15),
+                        ),
+                        Text(
+                          stateSnapshot.data.statewise[index].confirmed,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          stateSnapshot.data.statewise[index].confirmed,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    );
+                  }
+                }
+
+                Column finalRecoveries(int index) {
+                  if (int.parse(
+                          stateSnapshot.data.statewise[index].deltarecovered) !=
+                      0) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text(
+                          "\u{2B06}${stateSnapshot.data.statewise[index].deltarecovered}",
+                          style: TextStyle(color: Colors.green, fontSize: 15),
+                        ),
+                        Text(
+                          stateSnapshot.data.statewise[index].recovered,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          stateSnapshot.data.statewise[index].recovered,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    );
+                  }
+                }
+
+                Column finalDeath(int index) {
+                  if (int.parse(
+                          stateSnapshot.data.statewise[index].deltadeaths) !=
+                      0) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text(
+                          "\u{2B06}${stateSnapshot.data.statewise[index].deltadeaths}",
+                          style: TextStyle(color: Colors.grey, fontSize: 15),
+                        ),
+                        Text(
+                          stateSnapshot.data.statewise[index].deaths,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          stateSnapshot.data.statewise[index].deaths,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    );
+                  }
+                }
 
                 DataRow _getDataRow(index) {
                   return DataRow(
@@ -102,13 +191,9 @@ class _StateWiseStats extends State<StateWiseStats> {
                       ),
                       DataCell(
                         Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width * 0.17,
-                          child: Text(
-                            stateSnapshot.data.statewise[index].confirmed,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width * 0.17,
+                            child: finalConfirmed(index)),
                       ),
                       DataCell(
                         Container(
@@ -122,23 +207,15 @@ class _StateWiseStats extends State<StateWiseStats> {
                       ),
                       DataCell(
                         Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width * 0.17,
-                          child: Text(
-                            stateSnapshot.data.statewise[index].recovered,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width * 0.17,
+                            child: finalRecoveries(index)),
                       ),
                       DataCell(
                         Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width * 0.17,
-                          child: Text(
-                            stateSnapshot.data.statewise[index].deaths,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width * 0.17,
+                            child: finalDeath(index)),
                       )
                     ],
                   );
@@ -149,7 +226,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                   horizontalMargin: 5,
                   columnSpacing: 0,
                   sortAscending: true,
-                  dataRowHeight: MediaQuery.of(context).size.height * 0.08,
+                  dataRowHeight: MediaQuery.of(context).size.height * 0.1,
                   columns: [
                     DataColumn(
                       numeric: false,
