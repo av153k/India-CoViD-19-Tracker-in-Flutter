@@ -79,8 +79,8 @@ class _StateWiseStats extends State<StateWiseStats> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Text(
-                          "\u{2B06}${stateSnapshot.data.statewise[index].deltaconfirmed}",
-                          style: TextStyle(color: Colors.red, fontSize: 15),
+                          "\u{2B06} ${stateSnapshot.data.statewise[index].deltaconfirmed}",
+                          style: TextStyle(color: Colors.red, fontSize: 13),
                         ),
                         Text(
                           stateSnapshot.data.statewise[index].confirmed,
@@ -109,8 +109,8 @@ class _StateWiseStats extends State<StateWiseStats> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Text(
-                          "\u{2B06}${stateSnapshot.data.statewise[index].deltarecovered}",
-                          style: TextStyle(color: Colors.green, fontSize: 15),
+                          "\u{2B06} ${stateSnapshot.data.statewise[index].deltarecovered}",
+                          style: TextStyle(color: Colors.green, fontSize: 13),
                         ),
                         Text(
                           stateSnapshot.data.statewise[index].recovered,
@@ -139,8 +139,8 @@ class _StateWiseStats extends State<StateWiseStats> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Text(
-                          "\u{2B06}${stateSnapshot.data.statewise[index].deltadeaths}",
-                          style: TextStyle(color: Colors.grey, fontSize: 15),
+                          "\u{2B06} ${stateSnapshot.data.statewise[index].deltadeaths}",
+                          style: TextStyle(color: Colors.grey, fontSize: 13),
                         ),
                         Text(
                           stateSnapshot.data.statewise[index].deaths,
@@ -221,76 +221,79 @@ class _StateWiseStats extends State<StateWiseStats> {
                   );
                 }
 
-                return DataTable(
-                  headingRowHeight: 50.0,
-                  horizontalMargin: 5,
-                  columnSpacing: 0,
-                  sortAscending: true,
-                  dataRowHeight: MediaQuery.of(context).size.height * 0.1,
-                  columns: [
-                    DataColumn(
-                      numeric: false,
-                      label: Text(
-                        "State",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.purple),
+                return Theme(
+                  data: Theme.of(context).copyWith(dividerColor: Colors.white),
+                  child: DataTable(
+                    headingRowHeight: 50.0,
+                    horizontalMargin: 5,
+                    columnSpacing: 0,
+                    sortAscending: true,
+                    dataRowHeight: MediaQuery.of(context).size.height * 0.1,
+                    columns: [
+                      DataColumn(
+                        numeric: false,
+                        label: Text(
+                          "State",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.purple),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      numeric: true,
-                      label: Text(
-                        "Cnfmd",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.red),
+                      DataColumn(
+                        numeric: true,
+                        label: Text(
+                          "Cnfmd",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.red),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      numeric: true,
-                      label: Text(
-                        "Actv",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.blue),
+                      DataColumn(
+                        numeric: true,
+                        label: Text(
+                          "Actv",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.blue),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      numeric: true,
-                      label: Text(
-                        "Rcvrd",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.green),
+                      DataColumn(
+                        numeric: true,
+                        label: Text(
+                          "Rcvrd",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.green),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      numeric: true,
-                      label: Text(
-                        "Dcsd",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
+                      DataColumn(
+                        numeric: true,
+                        label: Text(
+                          "Dcsd",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                  rows: List.generate(stateSnapshot.data.statewise.length - 1,
-                      (index) => _getDataRow(index + 1)),
+                      )
+                    ],
+                    rows: List.generate(stateSnapshot.data.statewise.length - 1,
+                        (index) => _getDataRow(index + 1)),
+                  ),
                 );
               },
             ),

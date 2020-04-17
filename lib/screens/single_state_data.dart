@@ -238,10 +238,10 @@ class _SingleState extends State<SingleState> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Text(
-                              "\u{2B06}${_districts[index].deltaConfirmed}  ",
+                              "\u{2B06} ${_districts[index].deltaConfirmed}  ",
                               style: TextStyle(
                                 color: Colors.red,
-                                fontSize: 15,
+                                fontSize: 13,
                               ),
                             ),
                             Text(
@@ -337,11 +337,15 @@ class _SingleState extends State<SingleState> {
 
                     return Container(
                       margin: EdgeInsets.all(20.0),
-                      child: DataTable(
-                        columns: dataColumns,
-                        rows: dataRows,
-                        sortColumnIndex: _sortColumnIndex,
-                        sortAscending: _sortAsc,
+                      child: Theme(
+                        data: Theme.of(context)
+                            .copyWith(dividerColor: Colors.white),
+                        child: DataTable(
+                          columns: dataColumns,
+                          rows: dataRows,
+                          sortColumnIndex: _sortColumnIndex,
+                          sortAscending: _sortAsc,
+                        ),
                       ),
                     );
                   },
