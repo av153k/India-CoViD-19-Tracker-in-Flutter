@@ -191,135 +191,238 @@ class _StateWiseStats extends State<StateWiseStats> {
                   return DataRow(
                     cells: <DataCell>[
                       DataCell(
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<String>(
-                                builder: (context) => SingleState(
-                                  state:
-                                      stateSnapshot.data.statewise[index].state,
-                                  stateIndex: index,
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 2,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2,
+                              )
+                            ],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<String>(
+                                  builder: (context) => SingleState(
+                                    state: stateSnapshot
+                                        .data.statewise[index].state,
+                                    stateIndex: index,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xff212F3D),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
                                 ),
                               ),
-                            );
-                          },
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            child: Text(
-                              stateSnapshot.data.statewise[index].state,
-                              style:
-                                  GoogleFonts.montserrat(color: Colors.white),
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.all(3.5),
+                              width: MediaQuery.of(context).size.width * 0.22,
+                              child: Text(
+                                stateSnapshot.data.statewise[index].state,
+                                style:
+                                    GoogleFonts.montserrat(color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
                       ),
                       DataCell(
                         Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width * 0.17,
-                            child: finalConfirmed(index)),
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 2,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2,
+                              )
+                            ],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xff212F3D),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width * 0.15,
+                              child: finalConfirmed(index)),
+                        ),
                       ),
                       DataCell(
                         Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width * 0.17,
-                          child: Text(
-                            stateSnapshot.data.statewise[index].active,
-                            style: TextStyle(color: Colors.white),
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 2,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2,
+                              )
+                            ],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xff212F3D),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: Text(
+                              stateSnapshot.data.statewise[index].active,
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
                       DataCell(
                         Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width * 0.17,
-                            child: finalRecoveries(index)),
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 2,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2,
+                              )
+                            ],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xff212F3D),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width * 0.17,
+                              child: finalRecoveries(index)),
+                        ),
                       ),
                       DataCell(
                         Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width * 0.17,
-                            child: finalDeath(index)),
-                      )
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 2,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2,
+                              )
+                            ],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xff212F3D),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width * 0.15,
+                              child: finalDeath(index)),
+                        ),
+                      ),
                     ],
                   );
                 }
 
-                return Theme(
-                  data: Theme.of(context).copyWith(dividerColor: Colors.white),
-                  child: DataTable(
-                    headingRowHeight: 50.0,
-                    horizontalMargin: 5,
-                    columnSpacing: 0,
-                    sortAscending: true,
-                    dataRowHeight: MediaQuery.of(context).size.height * 0.1,
-                    columns: [
-                      DataColumn(
-                        numeric: false,
-                        label: Text(
-                          "State",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.purple),
-                          ),
+                return DataTable(
+                  headingRowHeight: 50.0,
+                  horizontalMargin: 5,
+                  columnSpacing: 10,
+                  sortAscending: true,
+                  dataRowHeight: MediaQuery.of(context).size.height * 0.1,
+                  columns: [
+                    DataColumn(
+                      numeric: false,
+                      label: Text(
+                        "State",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.purple),
                         ),
                       ),
-                      DataColumn(
-                        numeric: true,
-                        label: Text(
-                          "Cnfmd",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.red),
-                          ),
+                    ),
+                    DataColumn(
+                      numeric: true,
+                      label: Text(
+                        "Cnfmd",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.red),
                         ),
                       ),
-                      DataColumn(
-                        numeric: true,
-                        label: Text(
-                          "Actv",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.blue),
-                          ),
+                    ),
+                    DataColumn(
+                      numeric: true,
+                      label: Text(
+                        "Active",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.blue),
                         ),
                       ),
-                      DataColumn(
-                        numeric: true,
-                        label: Text(
-                          "Rcvrd",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.green),
-                          ),
+                    ),
+                    DataColumn(
+                      numeric: true,
+                      label: Text(
+                        "Rcvrd",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green),
                         ),
                       ),
-                      DataColumn(
-                        numeric: true,
-                        label: Text(
-                          "Dcsd",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white),
-                          ),
+                    ),
+                    DataColumn(
+                      numeric: true,
+                      label: Text(
+                        "Dcsd",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
                         ),
-                      )
-                    ],
-                    rows: List.generate(stateSnapshot.data.statewise.length - 1,
-                        (index) => _getDataRow(index + 1)),
-                  ),
+                      ),
+                    )
+                  ],
+                  rows: List.generate(stateSnapshot.data.statewise.length - 1,
+                      (index) => _getDataRow(index + 1)),
                 );
               },
             ),
