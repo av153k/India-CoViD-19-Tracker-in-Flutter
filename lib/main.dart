@@ -19,14 +19,13 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           backgroundColor: Color(0xff17202a),
           title: Text(
-            "India CoViD-19 Tracker",
+            "CoViD-19 Tracker",
             style: GoogleFonts.montserrat(
               textStyle:
                   TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
             ),
           ),
         ),
-        drawer: DrawerContent(),
         body: IndiaStats(),
       ),
     );
