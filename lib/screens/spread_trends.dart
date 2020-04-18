@@ -54,6 +54,7 @@ class _SpreadTrendsState extends State<SpreadTrends> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Color(0xff212F3D),
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
