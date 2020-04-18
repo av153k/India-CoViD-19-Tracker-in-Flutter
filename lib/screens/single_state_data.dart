@@ -84,6 +84,7 @@ class _SingleState extends State<SingleState> {
                 singleStateSnap.data.statewise[widget.stateIndex].deaths;
             String deathsDelta =
                 singleStateSnap.data.statewise[widget.stateIndex].deltadeaths;
+            String tested = "NA";
 
             return ListView(
               padding: EdgeInsets.all(5),
@@ -122,123 +123,281 @@ class _SingleState extends State<SingleState> {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Text(
-                          "Confirmed",
-                          style: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 18)),
-                          textAlign: TextAlign.center,
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.17,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 5.0,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2.0,
+                                offset: Offset(5.0, 5.0))
+                          ],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
                         ),
-                        Text(
-                          "+$confirmedDelta",
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14),
+                        height: 90,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          color: Color(0xff212F3D),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Text(
+                                "Confirmed",
+                                style: GoogleFonts.montserrat(
+                                    textStyle: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 18)),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "+$confirmedDelta",
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 14),
+                              ),
+                              Text(
+                                "$confirmed",
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 17),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          confirmed,
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 17),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 5.0,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2.0,
+                                offset: Offset(5.0, 5.0))
+                          ],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
                         ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(
-                          "Active",
-                          style: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 18)),
-                          textAlign: TextAlign.center,
+                        height: 90,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          color: Color(0xff212F3D),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text(
+                                "Active",
+                                style: GoogleFonts.montserrat(
+                                    textStyle: TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 18)),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                " ",
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 14),
+                              ),
+                              Text(
+                                "$active",
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 17),
+                              )
+                            ],
+                          ),
                         ),
-                        Text(
-                          " ",
-                          style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14),
+                      ),
+                      Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 5.0,
+                                  color: Color(0xff17202a),
+                                  spreadRadius: 2.0,
+                                  offset: Offset(5.0, 5.0))
+                            ],
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          height: 90,
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                            color: Color(0xff212F3D),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Text(
+                                  "Recovered",
+                                  style: GoogleFonts.montserrat(
+                                      textStyle: TextStyle(
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 18)),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  "+$recoveredDelta",
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 14),
+                                ),
+                                Text(
+                                  "$recovered",
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 17),
+                                ),
+                              ],
+                            ),
+                          ))
+                    ],
+                  ),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 5.0,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2.0,
+                                offset: Offset(5.0, 5.0))
+                          ],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
                         ),
-                        Text(
-                          active,
-                          style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 17),
-                        )
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(
-                          "Recovered",
-                          style: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 18)),
-                          textAlign: TextAlign.center,
+                        height: 90,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          color: Color(0xff212F3D),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text(
+                                "Deceased",
+                                style: GoogleFonts.montserrat(
+                                    textStyle: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w300)),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                "+$deathsDelta",
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 14),
+                              ),
+                              Text(
+                                "$deaths",
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 17),
+                              )
+                            ],
+                          ),
                         ),
-                        Text(
-                          "+$recoveredDelta",
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 5.0,
+                                color: Color(0xff17202a),
+                                spreadRadius: 2.0,
+                                offset: Offset(5.0, 5.0))
+                          ],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
                         ),
-                        Text(
-                          recovered,
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 17),
+                        height: 90,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          color: Color(0xff212F3D),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text(
+                                "Tested",
+                                style: GoogleFonts.montserrat(
+                                    textStyle: TextStyle(
+                                        color: Colors.yellow,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w300)),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                " ",
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 14),
+                              ),
+                              Text(
+                                "$tested",
+                                style: TextStyle(
+                                    color: Colors.yellow,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 17),
+                              )
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(
-                          "Deceased",
-                          style: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300)),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          "+$deathsDelta",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14),
-                        ),
-                        Text(
-                          deaths,
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 17),
-                        )
-                      ],
-                    ),
-                  ],
+                      )
+                    ],
+                  ),
                 ),
                 FutureBuilder(
                   future: districts,

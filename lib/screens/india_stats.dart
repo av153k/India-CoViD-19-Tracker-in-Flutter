@@ -45,8 +45,10 @@ class _IndiaStats extends State<IndiaStats> {
         int deceasedCases = int.parse(dataSnapshot.data.statewise[0].deaths);
         int deceasedCasesDelta =
             int.parse(dataSnapshot.data.statewise[0].deltadeaths);
-        int tested = int.parse(dataSnapshot.data
-            .tested[dataSnapshot.data.tested.length - 1].totalsamplestested);
+        int tested = int.parse(dataSnapshot
+            .data
+            .tested[dataSnapshot.data.tested.length - 1]
+            .totalindividualstested);
 
         return ListView(
           padding: EdgeInsets.all(5),
@@ -111,7 +113,7 @@ class _IndiaStats extends State<IndiaStats> {
                       ),
                       color: Color(0xff212F3D),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           Text(
