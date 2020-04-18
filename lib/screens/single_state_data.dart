@@ -60,475 +60,600 @@ class _SingleState extends State<SingleState> {
           title: Text(widget.state),
           backgroundColor: Color(0xff17202a),
         ),
-        body: FutureBuilder(
-          future: singleState,
-          builder: (BuildContext context,
-              AsyncSnapshot<CovidIndia> singleStateSnap) {
-            if (singleStateSnap.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            String confirmed =
-                singleStateSnap.data.statewise[widget.stateIndex].confirmed;
-            String confirmedDelta = singleStateSnap
-                .data.statewise[widget.stateIndex].deltaconfirmed;
-            String active =
-                singleStateSnap.data.statewise[widget.stateIndex].active;
-            String recovered =
-                singleStateSnap.data.statewise[widget.stateIndex].recovered;
-            String recoveredDelta = singleStateSnap
-                .data.statewise[widget.stateIndex].deltarecovered;
-            String deaths =
-                singleStateSnap.data.statewise[widget.stateIndex].deaths;
-            String deathsDelta =
-                singleStateSnap.data.statewise[widget.stateIndex].deltadeaths;
-            String tested = "NA";
-
-            return ListView(
-              padding: EdgeInsets.all(5),
-              scrollDirection: Axis.vertical,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.all(5),
-                  height: 70,
-                  alignment: Alignment(0.001, 0.2),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "${widget.state} Stats",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontWeight: FontWeight.w300, fontSize: 23),
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.refresh,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          setState(
-                            () {
-                              singleState = getSingleStateData();
-                              districts = getData();
-                            },
-                          );
-                        },
-                      )
-                    ],
+        body: ListView(
+          padding: EdgeInsets.all(5),
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(5),
+              height: 70,
+              alignment: Alignment(0.001, 0.2),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "${widget.state} Stats",
+                    style: GoogleFonts.montserrat(
+                      textStyle:
+                          TextStyle(fontWeight: FontWeight.w300, fontSize: 23),
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.17,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 5.0,
-                                color: Color(0xff17202a),
-                                spreadRadius: 2.0,
-                                offset: Offset(5.0, 5.0))
-                          ],
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                        ),
-                        height: 90,
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          color: Color(0xff212F3D),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              Text(
-                                "Confirmed",
-                                style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 18)),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "+$confirmedDelta",
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 14),
-                              ),
-                              Text(
-                                "$confirmed",
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 17),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 5.0,
-                                color: Color(0xff17202a),
-                                spreadRadius: 2.0,
-                                offset: Offset(5.0, 5.0))
-                          ],
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                        ),
-                        height: 90,
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          color: Color(0xff212F3D),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Text(
-                                "Active",
-                                style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 18)),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                " ",
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 14),
-                              ),
-                              Text(
-                                "$active",
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 17),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  blurRadius: 5.0,
-                                  color: Color(0xff17202a),
-                                  spreadRadius: 2.0,
-                                  offset: Offset(5.0, 5.0))
-                            ],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          height: 90,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
+                  IconButton(
+                    icon: Icon(
+                      Icons.refresh,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      setState(
+                        () {
+                          singleState = getSingleStateData();
+                          districts = getData();
+                        },
+                      );
+                    },
+                  )
+                ],
+              ),
+            ),
+            FutureBuilder(
+              future: singleState,
+              builder: (BuildContext context,
+                  AsyncSnapshot<CovidIndia> singleStateSnap) {
+                if (singleStateSnap.connectionState ==
+                    ConnectionState.waiting) {
+                  return Center(
+                    child: LinearProgressIndicator(),
+                  );
+                }
+
+                String confirmed =
+                    singleStateSnap.data.statewise[widget.stateIndex].confirmed;
+                String confirmedDelta = singleStateSnap
+                    .data.statewise[widget.stateIndex].deltaconfirmed;
+                String active =
+                    singleStateSnap.data.statewise[widget.stateIndex].active;
+                String recovered =
+                    singleStateSnap.data.statewise[widget.stateIndex].recovered;
+                String recoveredDelta = singleStateSnap
+                    .data.statewise[widget.stateIndex].deltarecovered;
+                String deaths =
+                    singleStateSnap.data.statewise[widget.stateIndex].deaths;
+                String deathsDelta = singleStateSnap
+                    .data.statewise[widget.stateIndex].deltadeaths;
+                String tested = "NA";
+
+                return Column(
+                  children: <Widget>[
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.17,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10.0),
                               ),
                             ),
-                            color: Color(0xff212F3D),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text(
-                                  "Recovered",
-                                  style: GoogleFonts.montserrat(
-                                      textStyle: TextStyle(
-                                          color: Colors.green,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 18)),
-                                  textAlign: TextAlign.center,
+                            height: 90,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
                                 ),
-                                Text(
-                                  "+$recoveredDelta",
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 14),
-                                ),
-                                Text(
-                                  "$recovered",
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 17),
-                                ),
-                              ],
+                              ),
+                              color: Color(0xff212F3D),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Text(
+                                    "Confirmed",
+                                    style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 18)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Text(
+                                    "+$confirmedDelta",
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    "$confirmed",
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 17),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ))
-                    ],
-                  ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 5.0,
-                                color: Color(0xff17202a),
-                                spreadRadius: 2.0,
-                                offset: Offset(5.0, 5.0))
-                          ],
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                            height: 90,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    "Active",
+                                    style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 18)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Text(
+                                    " ",
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    "$active",
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 17),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                            height: 90,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    "Recovered",
+                                    style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 18)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Text(
+                                    "+$recoveredDelta",
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    "$recovered",
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 17),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                            height: 90,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    "Deceased",
+                                    style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w300)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Text(
+                                    "+$deathsDelta",
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    "$deaths",
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 17),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                            height: 90,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    "Tested",
+                                    style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                            color: Colors.yellow,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w300)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Text(
+                                    " ",
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    "$tested",
+                                    style: TextStyle(
+                                        color: Colors.yellow,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 17),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+            FutureBuilder(
+              future: districts,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<DistrictData>> districtsSnap) {
+                if (districtsSnap.connectionState == ConnectionState.waiting) {
+                  return Center(child: LinearProgressIndicator());
+                }
+
+                bool _sortAsc = false;
+
+                List<DistrictsStats> _districts = List<DistrictsStats>();
+
+                for (var i = 0; i < districtsSnap.data.length; i++) {
+                  _districts.add(
+                    DistrictsStats(
+                        name: districtsSnap.data[i].district,
+                        confirmed: districtsSnap.data[i].confirmed,
+                        deltaConfirmed: districtsSnap.data[i].delta.confirmed),
+                  );
+                }
+
+                onSortColumn(int columnIndex, bool ascending) {
+                  if (columnIndex == 0) {
+                    if (ascending) {
+                      _districts
+                        ..sort((a, b) => a.confirmed.compareTo(b.confirmed));
+                    } else {
+                      _districts
+                        ..sort((a, b) => b.confirmed.compareTo(a.confirmed));
+                    }
+                  }
+                }
+
+                Row finalConfirmed(DistrictsStats district) {
+                  if (district.deltaConfirmed != 0) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "\u{2B06} ${district.deltaConfirmed}  ",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 13,
                           ),
                         ),
-                        height: 90,
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          color: Color(0xff212F3D),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Text(
-                                "Deceased",
-                                style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w300)),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "+$deathsDelta",
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 14),
-                              ),
-                              Text(
-                                "$deaths",
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 17),
-                              )
-                            ],
-                          ),
+                        Text(
+                          "${district.confirmed}",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          '${district.confirmed}',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    );
+                  }
+                }
+
+                var dataColumns = [
+                  DataColumn(
+                    label: Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.08,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 2,
+                            color: Color(0xff17202a),
+                            spreadRadius: 2,
+                          )
+                        ],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
                         ),
                       ),
-                      Container(
+                      child: Container(
                         decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 5.0,
-                                color: Color(0xff17202a),
-                                spreadRadius: 2.0,
-                                offset: Offset(5.0, 5.0))
-                          ],
+                          color: Color(0xff212F3D),
                           borderRadius: BorderRadius.all(
                             Radius.circular(10.0),
                           ),
                         ),
-                        height: 90,
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          color: Color(0xff212F3D),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Text(
-                                "Tested",
-                                style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(
-                                        color: Colors.yellow,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w300)),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                " ",
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 14),
-                              ),
-                              Text(
-                                "$tested",
-                                style: TextStyle(
-                                    color: Colors.yellow,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 17),
-                              )
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                FutureBuilder(
-                  future: districts,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<DistrictData>> districtsSnap) {
-                    if (districtsSnap.connectionState ==
-                        ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-
-                    bool _sortAsc = false;
-
-                    List<DistrictsStats> _districts = List<DistrictsStats>();
-
-                    for (var i = 0; i < districtsSnap.data.length; i++) {
-                      _districts.add(
-                        DistrictsStats(
-                            name: districtsSnap.data[i].district,
-                            confirmed: districtsSnap.data[i].confirmed,
-                            deltaConfirmed:
-                                districtsSnap.data[i].delta.confirmed),
-                      );
-                    }
-
-                    onSortColumn(int columnIndex, bool ascending) {
-                      if (columnIndex == 0) {
-                        if (ascending) {
-                          _districts
-                            ..sort(
-                                (a, b) => a.confirmed.compareTo(b.confirmed));
-                        } else {
-                          _districts
-                            ..sort(
-                                (a, b) => b.confirmed.compareTo(a.confirmed));
-                        }
-                      }
-                    }
-
-                    Row finalConfirmed(DistrictsStats district) {
-                      if (district.deltaConfirmed != 0) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Text(
-                              "\u{2B06} ${district.deltaConfirmed}  ",
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 13,
-                              ),
-                            ),
-                            Text(
-                              "${district.confirmed}",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        );
-                      } else {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Text(
-                              '${district.confirmed}',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        );
-                      }
-                    }
-
-                    var dataColumns = [
-                      DataColumn(
-                        label: Text(
+                        alignment: Alignment.center,
+                        child: Text(
                           "District",
                           style: GoogleFonts.montserrat(
                             textStyle: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.purple),
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.purple,
+                            ),
                           ),
                         ),
                       ),
-                      DataColumn(
-                          numeric: true,
-                          label: Text(
+                    ),
+                  ),
+                  DataColumn(
+                      numeric: true,
+                      label: Container(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        height: MediaQuery.of(context).size.height * 0.08,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 2,
+                              color: Color(0xff17202a),
+                              spreadRadius: 2,
+                            )
+                          ],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xff212F3D),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
                             "Confirmed",
                             style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.red),
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.red,
+                              ),
                             ),
                           ),
-                          onSort: (columnIndex, ascending) {
-                            setState(() {
-                              _sortAsc = !_sortAsc;
-                            });
-                            onSortColumn(columnIndex, ascending);
-                          }),
-                    ];
-                    var dataRows = _districts
-                        .map(
-                          (district) => DataRow(
-                            cells: [
-                              DataCell(
-                                Text(
+                        ),
+                      ),
+                      onSort: (columnIndex, ascending) {
+                        setState(() {
+                          _sortAsc = !_sortAsc;
+                        });
+                        onSortColumn(columnIndex, ascending);
+                      }),
+                ];
+                var dataRows = _districts
+                    .map(
+                      (district) => DataRow(
+                        cells: [
+                          DataCell(
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.height * 0.06,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 2,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xff212F3D),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(
                                   district.name,
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                              DataCell(finalConfirmed(district))
-                            ],
+                            ),
                           ),
-                        )
-                        .toList();
+                          DataCell(
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.height * 0.06,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 2,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xff212F3D),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                ),
+                                alignment: Alignment.center,
+                                child: finalConfirmed(district),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                    .toList();
 
-                    return Container(
-                      margin: EdgeInsets.all(20.0),
-                      child: Theme(
-                        data: Theme.of(context)
-                            .copyWith(dividerColor: Colors.white),
-                        child: DataTable(
-                          columns: dataColumns,
-                          rows: dataRows,
+                return Container(
+                  margin: EdgeInsets.all(10.0),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        height: MediaQuery.of(context).size.height * 0.08,
+                        child: Text(
+                          "District-Wise Stats",
+                          style: GoogleFonts.montserrat(
+                            textStyle:
+                                TextStyle(color: Colors.white, fontSize: 20),
+                          ),
                         ),
                       ),
-                    );
-                  },
-                )
-              ],
-            );
-          },
+                      DataTable(
+                        headingRowHeight:
+                            MediaQuery.of(context).size.height * 0.15,
+                        columns: dataColumns,
+                        dataRowHeight:
+                            MediaQuery.of(context).size.height * 0.08,
+                        rows: dataRows,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
