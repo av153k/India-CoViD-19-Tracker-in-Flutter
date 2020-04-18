@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/screens/india_stats.dart";
-import "package:covid_india_tracker/screens/drawer.dart";
 
 void main() => runApp(HomePage());
 
