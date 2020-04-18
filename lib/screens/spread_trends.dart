@@ -89,28 +89,32 @@ class _SpreadTrendsState extends State<SpreadTrends> {
               );
             }
 
+            final int length = statsSnapshot.data.casesTimeSeries.length;
+
             final List<DailyNewCases> dailyStats = List.generate(
-              statsSnapshot.data.casesTimeSeries.length,
+              30,
               (index) => DailyNewCases(
-                  dailyNewCases: int.parse(
-                      statsSnapshot.data.casesTimeSeries[index].dailyconfirmed),
-                  dailyNewDeaths: int.parse(
-                      statsSnapshot.data.casesTimeSeries[index].dailydeceased),
-                  dailyNewRecovered: int.parse(
-                      statsSnapshot.data.casesTimeSeries[index].dailyrecovered),
-                  date: statsSnapshot.data.casesTimeSeries[index].date),
+                  dailyNewCases: int.parse(statsSnapshot.data
+                      .casesTimeSeries[(length - 30) + index].dailyconfirmed),
+                  dailyNewDeaths: int.parse(statsSnapshot.data
+                      .casesTimeSeries[(length - 30) + index].dailydeceased),
+                  dailyNewRecovered: int.parse(statsSnapshot.data
+                      .casesTimeSeries[(length - 30) + index].dailyrecovered),
+                  date: statsSnapshot
+                      .data.casesTimeSeries[(length - 30) + index].date),
             );
 
             final List<TotalCases> totalStats = List.generate(
-              statsSnapshot.data.casesTimeSeries.length,
+              30,
               (index) => TotalCases(
-                  totalConfirmed: int.parse(
-                      statsSnapshot.data.casesTimeSeries[index].totalconfirmed),
-                  totalDeaths: int.parse(
-                      statsSnapshot.data.casesTimeSeries[index].totaldeceased),
-                  totalRecovered: int.parse(
-                      statsSnapshot.data.casesTimeSeries[index].totalrecovered),
-                  date: statsSnapshot.data.casesTimeSeries[index].date),
+                  totalConfirmed: int.parse(statsSnapshot.data
+                      .casesTimeSeries[(length - 30) + index].totalconfirmed),
+                  totalDeaths: int.parse(statsSnapshot.data
+                      .casesTimeSeries[(length - 30) + index].totaldeceased),
+                  totalRecovered: int.parse(statsSnapshot.data
+                      .casesTimeSeries[(length - 30) + index].totalrecovered),
+                  date: statsSnapshot
+                      .data.casesTimeSeries[(length - 30) + index].date),
             );
 
             List<ColumnSeries<DailyNewCases, String>> seriesDNC = [
@@ -119,7 +123,7 @@ class _SpreadTrendsState extends State<SpreadTrends> {
                   xValueMapper: (DailyNewCases series, _) => series.date,
                   yValueMapper: (DailyNewCases series, _) =>
                       series.dailyNewCases,
-                  color: Colors.redAccent,
+                  color: Colors.deepOrange[900],
                   name: "Daily New Confirmed Cases"),
             ];
 
@@ -129,7 +133,7 @@ class _SpreadTrendsState extends State<SpreadTrends> {
                   xValueMapper: (DailyNewCases series, _) => series.date,
                   yValueMapper: (DailyNewCases series, _) =>
                       series.dailyNewDeaths,
-                  color: Colors.grey,
+                  color: Colors.grey[500],
                   name: "Daily New Deaths")
             ];
 
@@ -139,34 +143,37 @@ class _SpreadTrendsState extends State<SpreadTrends> {
                   xValueMapper: (DailyNewCases series, _) => series.date,
                   yValueMapper: (DailyNewCases series, _) =>
                       series.dailyNewRecovered,
-                  color: Colors.greenAccent,
+                  color: Colors.lightGreen[900],
                   name: "Daily New Recoveries")
             ];
 
             List<FastLineSeries<TotalCases, String>> seriesTNC = [
               FastLineSeries<TotalCases, String>(
+                  width: 3.5,
                   dataSource: totalStats,
                   xValueMapper: (TotalCases series, _) => series.date,
                   yValueMapper: (TotalCases series, _) => series.totalConfirmed,
-                  color: Colors.redAccent,
+                  color: Colors.deepOrange[900],
                   name: "Total Confirmed Cases")
             ];
 
             List<FastLineSeries<TotalCases, String>> seriesTND = [
               FastLineSeries<TotalCases, String>(
+                  width: 3.5,
                   dataSource: totalStats,
                   xValueMapper: (TotalCases series, _) => series.date,
                   yValueMapper: (TotalCases series, _) => series.totalDeaths,
-                  color: Colors.grey,
+                  color: Colors.grey[500],
                   name: "Total Deaths")
             ];
 
             List<FastLineSeries<TotalCases, String>> seriesTNR = [
               FastLineSeries<TotalCases, String>(
+                  width: 3.5,
                   dataSource: totalStats,
                   xValueMapper: (TotalCases series, _) => series.date,
                   yValueMapper: (TotalCases series, _) => series.totalRecovered,
-                  color: Colors.green,
+                  color: Colors.lightGreen[900],
                   name: "Total Recoveries")
             ];
 
@@ -191,55 +198,146 @@ class _SpreadTrendsState extends State<SpreadTrends> {
                       child: ListView(
                         children: <Widget>[
                           Container(
+                            height: 30.0,
+                            alignment: Alignment(0.005, 0.2),
+                            child: Text(
+                              "[Tap on the graph to see details]",
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: 10.0, left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
                             height: 250,
                             child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
                               semanticContainer: true,
-                              elevation: 10,
+                              elevation: 0,
                               margin: EdgeInsets.all(5),
                               child: SfCartesianChart(
                                 primaryXAxis: CategoryAxis(
+                                    labelStyle:
+                                        ChartTextStyle(color: Colors.white),
                                     majorGridLines: MajorGridLines(width: 0)),
                                 primaryYAxis: NumericAxis(
+                                  labelStyle:
+                                      ChartTextStyle(color: Colors.white),
                                   majorGridLines: MajorGridLines(width: 0),
                                 ),
-                                title:
-                                    ChartTitle(text: "Total Confirmed Cases"),
+                                title: ChartTitle(
+                                    text: "Total Confirmed Cases",
+                                    textStyle:
+                                        ChartTextStyle(color: Colors.white)),
                                 tooltipBehavior: TooltipBehavior(enable: true),
                                 series: seriesTNC,
                               ),
                             ),
                           ),
                           Container(
+                            padding: EdgeInsets.only(
+                                top: 10.0, left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
                             height: 250,
                             child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
                               semanticContainer: true,
-                              elevation: 10,
+                              elevation: 0,
                               margin: EdgeInsets.all(5),
                               child: SfCartesianChart(
                                 primaryXAxis: CategoryAxis(
+                                    labelStyle:
+                                        ChartTextStyle(color: Colors.white),
                                     majorGridLines: MajorGridLines(width: 0)),
                                 primaryYAxis: NumericAxis(
+                                  labelStyle:
+                                      ChartTextStyle(color: Colors.white),
                                   majorGridLines: MajorGridLines(width: 0),
                                 ),
-                                title: ChartTitle(text: "Total Recoveries"),
+                                title: ChartTitle(
+                                    text: "Total Recovered Cases",
+                                    textStyle:
+                                        ChartTextStyle(color: Colors.white)),
                                 tooltipBehavior: TooltipBehavior(enable: true),
                                 series: seriesTNR,
                               ),
                             ),
                           ),
                           Container(
+                            padding: EdgeInsets.only(
+                                top: 10.0, left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
                             height: 250,
                             child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
                               semanticContainer: true,
-                              elevation: 10,
+                              elevation: 0,
                               margin: EdgeInsets.all(5),
                               child: SfCartesianChart(
                                 primaryXAxis: CategoryAxis(
+                                    labelStyle:
+                                        ChartTextStyle(color: Colors.white),
                                     majorGridLines: MajorGridLines(width: 0)),
                                 primaryYAxis: NumericAxis(
+                                  labelStyle:
+                                      ChartTextStyle(color: Colors.white),
                                   majorGridLines: MajorGridLines(width: 0),
                                 ),
-                                title: ChartTitle(text: "Total Deaths"),
+                                title: ChartTitle(
+                                    text: "Total Deaths",
+                                    textStyle:
+                                        ChartTextStyle(color: Colors.white)),
                                 tooltipBehavior: TooltipBehavior(enable: true),
                                 series: seriesTND,
                               ),
@@ -252,55 +350,146 @@ class _SpreadTrendsState extends State<SpreadTrends> {
                       child: ListView(
                         children: <Widget>[
                           Container(
+                            height: 30.0,
+                            alignment: Alignment(0.005, 0.2),
+                            child: Text(
+                              "[Tap on the graph to see details]",
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: 10.0, left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
                             height: 250,
                             child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
                               semanticContainer: true,
-                              elevation: 10,
+                              elevation: 0,
                               margin: EdgeInsets.all(5),
                               child: SfCartesianChart(
                                 primaryXAxis: CategoryAxis(
+                                    labelStyle:
+                                        ChartTextStyle(color: Colors.white),
                                     majorGridLines: MajorGridLines(width: 0)),
                                 primaryYAxis: NumericAxis(
+                                  labelStyle:
+                                      ChartTextStyle(color: Colors.white),
                                   majorGridLines: MajorGridLines(width: 0),
                                 ),
                                 title: ChartTitle(
-                                    text: "Daily New Confirmed Cases"),
+                                    text: "Daily New Confirmed Cases",
+                                    textStyle:
+                                        ChartTextStyle(color: Colors.white)),
                                 tooltipBehavior: TooltipBehavior(enable: true),
                                 series: seriesDNC,
                               ),
                             ),
                           ),
                           Container(
+                            padding: EdgeInsets.only(
+                                top: 10.0, left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
                             height: 250,
                             child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
                               semanticContainer: true,
-                              elevation: 10,
+                              elevation: 0,
                               margin: EdgeInsets.all(5),
                               child: SfCartesianChart(
                                 primaryXAxis: CategoryAxis(
+                                    labelStyle:
+                                        ChartTextStyle(color: Colors.white),
                                     majorGridLines: MajorGridLines(width: 0)),
                                 primaryYAxis: NumericAxis(
+                                  labelStyle:
+                                      ChartTextStyle(color: Colors.white),
                                   majorGridLines: MajorGridLines(width: 0),
                                 ),
-                                title: ChartTitle(text: "Daily New Recoveries"),
+                                title: ChartTitle(
+                                    text: "Daily New Recoveries",
+                                    textStyle:
+                                        ChartTextStyle(color: Colors.white)),
                                 tooltipBehavior: TooltipBehavior(enable: true),
                                 series: seriesDNR,
                               ),
                             ),
                           ),
                           Container(
+                            padding: EdgeInsets.only(
+                                top: 10.0, left: 10.0, right: 10.0),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(5.0, 5.0))
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
                             height: 250,
                             child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              color: Color(0xff212F3D),
                               semanticContainer: true,
-                              elevation: 10,
+                              elevation: 0,
                               margin: EdgeInsets.all(5),
                               child: SfCartesianChart(
                                 primaryXAxis: CategoryAxis(
+                                    labelStyle:
+                                        ChartTextStyle(color: Colors.white),
                                     majorGridLines: MajorGridLines(width: 0)),
                                 primaryYAxis: NumericAxis(
+                                  labelStyle:
+                                      ChartTextStyle(color: Colors.white),
                                   majorGridLines: MajorGridLines(width: 0),
                                 ),
-                                title: ChartTitle(text: "Daily New Deaths"),
+                                title: ChartTitle(
+                                    text: "Daily New Deaths",
+                                    textStyle:
+                                        ChartTextStyle(color: Colors.white)),
                                 tooltipBehavior: TooltipBehavior(enable: true),
                                 series: seriesDND,
                               ),
