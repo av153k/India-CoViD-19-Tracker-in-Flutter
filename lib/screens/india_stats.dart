@@ -90,20 +90,42 @@ class _IndiaStats extends State<IndiaStats> {
                 int.parse(dataSnapshot.data.statewise[0].deaths);
             int deceasedCasesDelta =
                 int.parse(dataSnapshot.data.statewise[0].deltadeaths);
-            int tested = int.parse(dataSnapshot
-                .data
-                .tested[dataSnapshot.data.tested.length - 1]
-                .totalindividualstested);
+
+            int tested;
+            int testedDelta;
+
+            if (dataSnapshot.data.tested[dataSnapshot.data.tested.length - 1]
+                    .totalindividualstested ==
+                "") {
+              tested = int.parse(dataSnapshot
+                  .data
+                  .tested[dataSnapshot.data.tested.length - 2]
+                  .totalindividualstested);
+              testedDelta = int.parse(dataSnapshot
+                      .data
+                      .tested[dataSnapshot.data.tested.length - 2]
+                      .totalindividualstested) -
+                  int.parse(dataSnapshot
+                      .data
+                      .tested[dataSnapshot.data.tested.length - 3]
+                      .totalindividualstested);
+            } else {
+              tested = int.parse(dataSnapshot
+                  .data
+                  .tested[dataSnapshot.data.tested.length - 1]
+                  .totalindividualstested);
+              testedDelta = int.parse(dataSnapshot
+                      .data
+                      .tested[dataSnapshot.data.tested.length - 1]
+                      .totalindividualstested) -
+                  int.parse(dataSnapshot
+                      .data
+                      .tested[dataSnapshot.data.tested.length - 2]
+                      .totalindividualstested);
+            }
+
             int activeDelta = (confirmedCasesDelta -
                 (deceasedCasesDelta + recoveredCasesDelta));
-            int testedDelta = int.parse(dataSnapshot
-                    .data
-                    .tested[dataSnapshot.data.tested.length - 1]
-                    .totalindividualstested) -
-                int.parse(dataSnapshot
-                    .data
-                    .tested[dataSnapshot.data.tested.length - 2]
-                    .totalindividualstested);
 
             return Column(
               children: <Widget>[

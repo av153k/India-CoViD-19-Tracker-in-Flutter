@@ -45,7 +45,7 @@ showAlertDialog(BuildContext context) {
   AlertDialog alert = AlertDialog(
     backgroundColor: Color(0xff212F3D),
     title: Text("Tested Info !", style: TextStyle(color: Colors.white)),
-    content: Text("Tested data gets updated only after 9 PM everyday.",
+    content: Text("Tested data gets updated only after Midnight.",
         style: TextStyle(color: Colors.white)),
     actions: [
       okButton,
