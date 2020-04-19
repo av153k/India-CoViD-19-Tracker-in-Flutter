@@ -197,7 +197,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Color(0xff17202a),
+                                color: Colors.purple,
                                 spreadRadius: 2,
                               )
                             ],
@@ -244,7 +244,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Color(0xff17202a),
+                                color: Colors.redAccent,
                                 spreadRadius: 2,
                               )
                             ],
@@ -271,7 +271,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Color(0xff17202a),
+                                color: Colors.blueAccent,
                                 spreadRadius: 2,
                               )
                             ],
@@ -302,7 +302,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Color(0xff17202a),
+                                color: Colors.greenAccent,
                                 spreadRadius: 2,
                               )
                             ],
@@ -329,7 +329,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Color(0xff17202a),
+                                color: Colors.white70,
                                 spreadRadius: 2,
                               )
                             ],
