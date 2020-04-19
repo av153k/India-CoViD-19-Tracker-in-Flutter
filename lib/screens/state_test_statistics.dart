@@ -38,7 +38,7 @@ class _StateTest extends State<StateTest> {
                       fontSize: 15));
             } else {
               return Text(
-                "${testedSnap.data.totaltested}",
+                "Not Available",
                 style: TextStyle(
                     color: Colors.yellow,
                     fontWeight: FontWeight.w300,
