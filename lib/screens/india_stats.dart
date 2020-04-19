@@ -88,20 +88,42 @@ class _IndiaStats extends State<IndiaStats> {
                 .data
                 .tested[dataSnapshot.data.tested.length - 1]
                 .totalindividualstested);
+            int activeDelta = (confirmedCasesDelta -
+                (deceasedCasesDelta + recoveredCasesDelta));
+            int testedDelta = int.parse(dataSnapshot
+                    .data
+                    .tested[dataSnapshot.data.tested.length - 1]
+                    .totalindividualstested) -
+                int.parse(dataSnapshot
+                    .data
+                    .tested[dataSnapshot.data.tested.length - 2]
+                    .totalindividualstested);
 
             return Column(
               children: <Widget>[
                 Container(
-                  height: 30.0,
-                  alignment: Alignment(0.005, 0.2),
-                  child: Text(
-                    "Database last updated at : ${dataSnapshot.data.statewise[0].lastupdatedtime}",
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                    height: 40.0,
+                    alignment: Alignment(0.005, 0.2),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Database last updated at : ${dataSnapshot.data.statewise[0].lastupdatedtime}",
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          "*Tested data only gets updated after 9 PM everyday.",
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            color: Colors.white,
+                            fontSize: 12
+                          ),
+                        ),
+                      ],
+                    )),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.17,
                   child: Row(
@@ -195,7 +217,7 @@ class _IndiaStats extends State<IndiaStats> {
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                " ",
+                                "+$activeDelta",
                                 style: TextStyle(
                                     color: Colors.blue,
                                     fontWeight: FontWeight.w300,
@@ -358,9 +380,9 @@ class _IndiaStats extends State<IndiaStats> {
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                " ",
+                                "+$testedDelta",
                                 style: TextStyle(
-                                    color: Colors.grey,
+                                    color: Colors.yellow,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 14),
                               ),

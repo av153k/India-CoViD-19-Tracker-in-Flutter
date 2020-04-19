@@ -122,6 +122,8 @@ class _SingleState extends State<SingleState> {
                 String deathsDelta = singleStateSnap
                     .data.statewise[widget.stateIndex].deltadeaths;
                 String tested = "NA";
+                int activeDelta = (int.parse(confirmedDelta) -
+                    (int.parse(deathsDelta) + int.parse(recoveredDelta)));
 
                 return Column(
                   children: <Widget>[
@@ -137,7 +139,7 @@ class _SingleState extends State<SingleState> {
                                     blurRadius: 5.0,
                                     color: Color(0xff17202a),
                                     spreadRadius: 2.0,
-                                    offset: Offset(5.0, 5.0))
+                                    offset: Offset(8.0, 8.0))
                               ],
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10.0),
@@ -151,7 +153,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff212F3D),
+                              color: Color(0xff530709),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -191,7 +193,7 @@ class _SingleState extends State<SingleState> {
                                     blurRadius: 5.0,
                                     color: Color(0xff17202a),
                                     spreadRadius: 2.0,
-                                    offset: Offset(5.0, 5.0))
+                                    offset: Offset(8.0, 8.0))
                               ],
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10.0),
@@ -205,7 +207,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff212F3D),
+                              color: Color(0xff070D53),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -220,7 +222,7 @@ class _SingleState extends State<SingleState> {
                                     textAlign: TextAlign.center,
                                   ),
                                   Text(
-                                    " ",
+                                    "+$activeDelta",
                                     style: TextStyle(
                                         color: Colors.blue,
                                         fontWeight: FontWeight.w300,
@@ -244,7 +246,7 @@ class _SingleState extends State<SingleState> {
                                     blurRadius: 5.0,
                                     color: Color(0xff17202a),
                                     spreadRadius: 2.0,
-                                    offset: Offset(5.0, 5.0))
+                                    offset: Offset(8.0, 8.0))
                               ],
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10.0),
@@ -258,7 +260,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff212F3D),
+                              color: Color(0xff0E5307),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -305,7 +307,7 @@ class _SingleState extends State<SingleState> {
                                     blurRadius: 5.0,
                                     color: Color(0xff17202a),
                                     spreadRadius: 2.0,
-                                    offset: Offset(5.0, 5.0))
+                                    offset: Offset(8.0, 8.0))
                               ],
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10.0),
@@ -319,7 +321,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff212F3D),
+                              color: Color(0xff3C3737),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -358,7 +360,7 @@ class _SingleState extends State<SingleState> {
                                     blurRadius: 5.0,
                                     color: Color(0xff17202a),
                                     spreadRadius: 2.0,
-                                    offset: Offset(5.0, 5.0))
+                                    offset: Offset(8.0, 8.0))
                               ],
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10.0),
@@ -372,7 +374,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff212F3D),
+                              color: Color(0xff525307),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
