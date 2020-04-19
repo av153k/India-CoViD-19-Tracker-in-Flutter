@@ -1,3 +1,4 @@
+import 'package:covid_india_tracker/screens/state_test_statistics.dart';
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/services/data_fetcher.dart";
@@ -353,59 +354,7 @@ class _SingleState extends State<SingleState> {
                               ),
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff525307),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    "Tested",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.yellow,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w300)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    " ",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$tested",
-                                    style: TextStyle(
-                                        color: Colors.yellow,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
+                          StateTest(state: singleStateSnap.data.statewise[widget.stateIndex].state)
                         ],
                       ),
                     ),
