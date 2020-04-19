@@ -117,10 +117,9 @@ class _IndiaStats extends State<IndiaStats> {
                         Text(
                           "*Tested data only gets updated after 9 PM everyday.",
                           style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            color: Colors.white,
-                            fontSize: 12
-                          ),
+                              fontStyle: FontStyle.italic,
+                              color: Colors.white,
+                              fontSize: 12),
                         ),
                       ],
                     )),
@@ -426,10 +425,10 @@ class _IndiaStats extends State<IndiaStats> {
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                            blurRadius: 5.0,
-                            color: Color(0xff17202a),
-                            spreadRadius: 3.0,
-                            offset: Offset(5.0, 5.0))
+                          blurRadius: 5.0,
+                          color: Color(0xff17202a),
+                          spreadRadius: 3.0,
+                        )
                       ],
                       borderRadius: BorderRadius.all(
                         Radius.circular(10.0),
@@ -453,6 +452,7 @@ class _IndiaStats extends State<IndiaStats> {
                           );
                         },
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Icon(
                               Icons.table_chart,
@@ -478,10 +478,10 @@ class _IndiaStats extends State<IndiaStats> {
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                            blurRadius: 5.0,
-                            color: Color(0xff17202a),
-                            spreadRadius: 3.0,
-                            offset: Offset(5.0, 5.0))
+                          blurRadius: 5.0,
+                          color: Color(0xff17202a),
+                          spreadRadius: 3.0,
+                        )
                       ],
                       borderRadius: BorderRadius.all(
                         Radius.circular(10.0),
@@ -505,6 +505,7 @@ class _IndiaStats extends State<IndiaStats> {
                           );
                         },
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Icon(
                               Icons.multiline_chart,
