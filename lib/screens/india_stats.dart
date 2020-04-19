@@ -1,3 +1,4 @@
+import 'package:covid_india_tracker/screens/app_info.dart';
 import 'package:covid_india_tracker/screens/global_stats.dart';
 import 'package:covid_india_tracker/screens/spread_trends.dart';
 import 'package:covid_india_tracker/screens/statewise_stats.dart';
@@ -8,6 +9,7 @@ import "package:covid_india_tracker/services/data_fetcher.dart";
 import "dart:async";
 import "package:flag/flag.dart";
 import "package:flutter_icons/flutter_icons.dart";
+import "package:covid_india_tracker/assets/common_functions.dart";
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 
@@ -107,23 +109,19 @@ class _IndiaStats extends State<IndiaStats> {
               children: <Widget>[
                 Container(
                     height: 40.0,
-                    alignment: Alignment(0.005, 0.2),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    alignment: Alignment(0.01, 0.2),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          "Database last updated at : ${dataSnapshot.data.statewise[0].lastupdatedtime}",
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            color: Colors.white,
-                          ),
+                        Icon(
+                          Ionicons.md_sync,
+                          color: Colors.white,
                         ),
                         Text(
-                          "*Tested data only gets updated after 9 PM everyday.",
+                          " Database last sync : ${getFormattedTime(dataSnapshot.data.statewise[0].lastupdatedtime)}",
                           style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              color: Colors.white,
-                              fontSize: 12),
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     )),
@@ -373,14 +371,30 @@ class _IndiaStats extends State<IndiaStats> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Text(
-                                "Tested",
-                                style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(
-                                        color: Colors.yellow,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w300)),
-                                textAlign: TextAlign.center,
+                              InkWell(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    Text(
+                                      "Tested",
+                                      style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                              color: Colors.yellow,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w300)),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Icon(
+                                      Octicons.alert,
+                                      color: Colors.yellow,
+                                      size: 13,
+                                    )
+                                  ],
+                                ),
+                                onTap: () {
+                                  showAlertDialog(context);
+                                },
                               ),
                               Text(
                                 "+$testedDelta",
@@ -594,7 +608,67 @@ class _IndiaStats extends State<IndiaStats> {
               ),
             ],
           ),
-        )
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.07,
+          alignment: Alignment.bottomCenter,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height * 0.05,
+                width: MediaQuery.of(context).size.width * 0.3,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 5.0,
+                      color: Color(0xff17202a),
+                      spreadRadius: 3.0,
+                    )
+                  ],
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                    color: Color(0xff212F3D),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AppInfo(),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Icon(Ionicons.ios_information_circle_outline,
+                            color: Colors.amber),
+                        Text(
+                          "App Info",
+                          style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 18),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
