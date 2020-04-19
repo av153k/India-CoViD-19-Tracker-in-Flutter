@@ -281,12 +281,12 @@ packages:
     source: hosted
     version: "18.1.43"
   syncfusion_flutter_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: syncfusion_flutter_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "18.1.43"
+    version: "18.1.44"
   term_glyph:
     dependency: transitive
     description:
