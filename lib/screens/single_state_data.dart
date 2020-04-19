@@ -154,7 +154,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff530709),
+                              color: Color(0xff212F3D),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -208,7 +208,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff070D53),
+                              color: Color(0xff212F3D),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -261,7 +261,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff0E5307),
+                              color: Color(0xff212F3D),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -322,7 +322,7 @@ class _SingleState extends State<SingleState> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff3C3737),
+                              color: Color(0xff212F3D),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,

@@ -7,6 +7,7 @@ import "package:covid_india_tracker/models/data_api.dart";
 import "package:covid_india_tracker/services/data_fetcher.dart";
 import "dart:async";
 import "package:flag/flag.dart";
+import "package:flutter_icons/flutter_icons.dart";
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 
@@ -152,7 +153,7 @@ class _IndiaStats extends State<IndiaStats> {
                               Radius.circular(10.0),
                             ),
                           ),
-                          color: Color(0xff530709),
+                          color: Color(0xff212F3D),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             mainAxisSize: MainAxisSize.max,
@@ -205,7 +206,7 @@ class _IndiaStats extends State<IndiaStats> {
                               Radius.circular(10.0),
                             ),
                           ),
-                          color: Color(0xff070D53),
+                          color: Color(0xff212F3D),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -257,7 +258,7 @@ class _IndiaStats extends State<IndiaStats> {
                                 Radius.circular(10.0),
                               ),
                             ),
-                            color: Color(0xff0E5307),
+                            color: Color(0xff212F3D),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
@@ -316,7 +317,7 @@ class _IndiaStats extends State<IndiaStats> {
                               Radius.circular(10.0),
                             ),
                           ),
-                          color: Color(0xff3C3737),
+                          color: Color(0xff212F3D),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -368,7 +369,7 @@ class _IndiaStats extends State<IndiaStats> {
                               Radius.circular(10.0),
                             ),
                           ),
-                          color: Color(0xff525307),
+                          color: Color(0xff212F3D),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -462,7 +463,7 @@ class _IndiaStats extends State<IndiaStats> {
                             children: <Widget>[
                               Icon(
                                 Icons.table_chart,
-                                color: Colors.teal,
+                                color: Colors.purple,
                               ),
                               Text(
                                 " StateWise Stats",
@@ -514,7 +515,7 @@ class _IndiaStats extends State<IndiaStats> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               Icon(
-                                Icons.multiline_chart,
+                                Octicons.graph,
                                 color: Colors.redAccent,
                               ),
                               Text(
@@ -573,10 +574,7 @@ class _IndiaStats extends State<IndiaStats> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Icon(
-                                Icons.language,
-                                color: Colors.blue,
-                              ),
+                              Icon(Octicons.globe, color: Colors.blue),
                               Text(
                                 "Global Stats",
                                 style: GoogleFonts.montserrat(

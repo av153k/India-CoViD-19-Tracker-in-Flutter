@@ -68,7 +68,7 @@ class _StateTest extends State<StateTest> {
                   Radius.circular(10.0),
                 ),
               ),
-              color: Color(0xff525307),
+              color: Color(0xff212F3D),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[

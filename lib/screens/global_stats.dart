@@ -1,6 +1,7 @@
 import 'package:covid_india_tracker/models/world_data_api.dart';
 import 'package:covid_india_tracker/services/get_world_data.dart';
 import "package:flutter/material.dart";
+import 'package:flutter_icons/flutter_icons.dart';
 import "package:google_fonts/google_fonts.dart";
 import "dart:async";
 
@@ -48,14 +49,24 @@ class _GlobStats extends State<GlobStats> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
-                    "Global Stats",
-                    style: GoogleFonts.montserrat(
-                      textStyle:
-                          TextStyle(fontWeight: FontWeight.w300, fontSize: 30),
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Icon(
+                        Octicons.globe,
+                        color: Colors.teal,
+                        size: 30,
+                      ),
+                      Text(
+                        " Global Stats",
+                        style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 30),
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                   IconButton(
                     icon: Icon(
@@ -135,7 +146,7 @@ class _GlobStats extends State<GlobStats> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff530709),
+                              color: Color(0xff212F3D),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -189,7 +200,7 @@ class _GlobStats extends State<GlobStats> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff070D53),
+                              color: Color(0xff212F3D),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -250,7 +261,7 @@ class _GlobStats extends State<GlobStats> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff0E5307),
+                              color: Color(0xff212F3D),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -303,7 +314,7 @@ class _GlobStats extends State<GlobStats> {
                                   Radius.circular(10.0),
                                 ),
                               ),
-                              color: Color(0xff3C3737),
+                              color: Color(0xff212F3D),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
