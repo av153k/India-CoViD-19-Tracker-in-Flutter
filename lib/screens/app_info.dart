@@ -124,7 +124,7 @@ class _AppInfo extends State<AppInfo> {
                                 children: <Widget>[
                                   Icon(Octicons.link, color: Colors.yellow),
                                   Text(
-                                    "Tested individuals data source",
+                                    "Tested Individuals Data Source",
                                     style: GoogleFonts.montserrat(
                                       textStyle: TextStyle(
                                           color: Colors.white,
@@ -411,7 +411,7 @@ class _AppInfo extends State<AppInfo> {
                                         size: 25,
                                       ),
                                       Text(
-                                        "Connect",
+                                        "Facebook",
                                         style: GoogleFonts.montserrat(
                                           textStyle: TextStyle(
                                               color: Colors.white,
