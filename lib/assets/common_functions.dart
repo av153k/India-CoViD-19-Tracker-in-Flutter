@@ -14,7 +14,7 @@ String getFormattedTime(String fullDate) {
   String formattedTime = "";
   if (int.parse(fullDate.substring(11, 13)) > 12) {
     int time = int.parse(fullDate.substring(11, 13)) - 12;
-    formattedTime = formattedTime + "0" + "$time";
+    formattedTime = formattedTime  + "$time";
   } else {
     formattedTime = formattedTime + fullDate.substring(11, 13);
   }
