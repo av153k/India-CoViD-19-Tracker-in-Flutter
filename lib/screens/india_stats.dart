@@ -6,6 +6,7 @@ import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/models/data_api.dart";
 import "package:covid_india_tracker/services/data_fetcher.dart";
 import "dart:async";
+import "package:flag/flag.dart";
 
 CovidIndiaStats _covidIndiaStats = new CovidIndiaStats();
 
@@ -38,6 +39,7 @@ class _IndiaStats extends State<IndiaStats> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              Flags.getMiniFlag("IN", 25, 50),
               Text(
                 "India CoViD-19 Stats",
                 style: GoogleFonts.montserrat(
