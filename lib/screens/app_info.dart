@@ -181,7 +181,7 @@ class _AppInfo extends State<AppInfo> {
                             ),
                             child: InkWell(
                               onTap: () {
-                                launch("http://patientdb.covid19india.org/");
+                                launch("https://github.com/covid19india/api");
                               },
                               child: Row(
                                 mainAxisAlignment:
@@ -272,102 +272,207 @@ class _AppInfo extends State<AppInfo> {
                             ),
                           ),
                         ),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.07,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 5.0,
-                                color: Color(0xff17202a),
-                                spreadRadius: 3.0,
-                              )
-                            ],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                              color: Color(0xff212F3D),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                launch("https://github.com/code-ninza");
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Icon(Octicons.mark_github,
-                                      color: Colors.white),
-                                  Text(
-                                    "GitHub",
-                                    style: GoogleFonts.montserrat(
-                                      textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 17),
-                                    ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.07,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 3.0,
                                   )
                                 ],
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.07,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 5.0,
-                                color: Color(0xff17202a),
-                                spreadRadius: 3.0,
-                              )
-                            ],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                              color: Color(0xff212F3D),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                launch("https://www.facebook.com/av153k");
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Icon(
-                                    Ionicons.logo_facebook,
-                                    color: Colors.blue,
-                                    size: 25,
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
                                   ),
-                                  Text(
-                                    "Connect",
-                                    style: GoogleFonts.montserrat(
-                                      textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 17),
-                                    ),
-                                  )
-                                ],
+                                  color: Color(0xff212F3D),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    launch("https://github.com/code-ninza");
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Icon(Octicons.mark_github,
+                                          color: Colors.white),
+                                      Text(
+                                        "GitHub",
+                                        style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 17),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.07,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 3.0,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  color: Color(0xff212F3D),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    launch("https://www.linkedin.com/in/av153k/");
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Icon(Ionicons.logo_linkedin,
+                                          color: Colors.blue[800]),
+                                      Text(
+                                        "LinkedIn",
+                                        style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 17),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.07,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 3.0,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  color: Color(0xff212F3D),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    launch("https://www.facebook.com/av153k");
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Icon(
+                                        Ionicons.logo_facebook,
+                                        color: Colors.blue,
+                                        size: 25,
+                                      ),
+                                      Text(
+                                        "Connect",
+                                        style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 17),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.07,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 5.0,
+                                    color: Color(0xff17202a),
+                                    spreadRadius: 3.0,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  color: Color(0xff212F3D),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    launch(
+                                        "https://www.instagram.com/avishek.py/");
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Icon(Ionicons.logo_instagram,
+                                          color: Colors.redAccent),
+                                      Text(
+                                        "Instagram",
+                                        style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 17),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
