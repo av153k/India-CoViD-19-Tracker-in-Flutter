@@ -26,7 +26,7 @@ class _StateTest extends State<StateTest> {
         builder:
             (BuildContext context, AsyncSnapshot<StatesTestedData> testedSnap) {
           if (testedSnap.connectionState == ConnectionState.waiting) {
-            return Center(child: CupertinoActivityIndicator());
+            return Center(child: CircularProgressIndicator());
           }
 
           Text getTestedData() {
