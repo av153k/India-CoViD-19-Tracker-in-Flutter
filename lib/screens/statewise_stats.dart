@@ -197,7 +197,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Colors.purple,
+                                color: Color(0xff17202a),
                                 spreadRadius: 2,
                               )
                             ],
@@ -244,7 +244,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Colors.redAccent,
+                                color: Color(0xff17202a),
                                 spreadRadius: 2,
                               )
                             ],
@@ -271,7 +271,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Colors.blueAccent,
+                                color: Color(0xff17202a),
                                 spreadRadius: 2,
                               )
                             ],
@@ -302,7 +302,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Colors.greenAccent,
+                                color: Color(0xff17202a),
                                 spreadRadius: 2,
                               )
                             ],
@@ -329,7 +329,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 2,
-                                color: Colors.white70,
+                                color: Color(0xff17202a),
                                 spreadRadius: 2,
                               )
                             ],

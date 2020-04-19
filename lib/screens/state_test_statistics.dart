@@ -28,6 +28,25 @@ class _StateTest extends State<StateTest> {
           if (testedSnap.connectionState == ConnectionState.waiting) {
             return Center(child: CupertinoActivityIndicator());
           }
+
+          Text getTestedData() {
+            if (testedSnap.data == null) {
+              return Text("Not Available",
+                  style: TextStyle(
+                      color: Colors.yellow,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 15));
+            } else {
+              return Text(
+                "${testedSnap.data.totaltested}",
+                style: TextStyle(
+                    color: Colors.yellow,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 17),
+              );
+            }
+          }
+
           return Container(
             decoration: BoxDecoration(
               boxShadow: [
@@ -69,13 +88,7 @@ class _StateTest extends State<StateTest> {
                         fontWeight: FontWeight.w300,
                         fontSize: 14),
                   ),
-                  Text(
-                    "${testedSnap.data.totaltested}",
-                    style: TextStyle(
-                        color: Colors.yellow,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 17),
-                  )
+                  getTestedData()
                 ],
               ),
             ),

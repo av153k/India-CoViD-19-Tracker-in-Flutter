@@ -354,7 +354,9 @@ class _SingleState extends State<SingleState> {
                               ),
                             ),
                           ),
-                          StateTest(state: singleStateSnap.data.statewise[widget.stateIndex].state)
+                          StateTest(
+                              state: singleStateSnap
+                                  .data.statewise[widget.stateIndex].state)
                         ],
                       ),
                     ),
