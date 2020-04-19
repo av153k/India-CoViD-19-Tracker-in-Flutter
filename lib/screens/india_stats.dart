@@ -1,3 +1,4 @@
+import 'package:covid_india_tracker/screens/global_stats.dart';
 import 'package:covid_india_tracker/screens/spread_trends.dart';
 import 'package:covid_india_tracker/screens/statewise_stats.dart';
 import "package:flutter/material.dart";
@@ -403,132 +404,196 @@ class _IndiaStats extends State<IndiaStats> {
             );
           },
         ),
-        Column(
-          children: <Widget>[
-            Container(
-              alignment: Alignment.center,
-              height: MediaQuery.of(context).size.height * 0.08,
-              child: Text(
-                "Additional Analysis",
-                style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(color: Colors.white, fontSize: 20),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.28,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                height: MediaQuery.of(context).size.height * 0.03,
+                child: Text(
+                  "Additional Analysis",
+                  style: GoogleFonts.montserrat(
+                    textStyle: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                 ),
               ),
-            ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.08,
-                    width: MediaQuery.of(context).size.width * 0.43,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 5.0,
-                          color: Color(0xff17202a),
-                          spreadRadius: 3.0,
-                        )
-                      ],
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                    ),
-                    child: Container(
-                      alignment: Alignment.center,
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.08,
+                      width: MediaQuery.of(context).size.width * 0.43,
                       decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 5.0,
+                            color: Color(0xff17202a),
+                            spreadRadius: 3.0,
+                          )
+                        ],
                         borderRadius: BorderRadius.all(
                           Radius.circular(10.0),
                         ),
-                        color: Color(0xff212F3D),
                       ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => StateWiseStats(),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Icon(
-                              Icons.table_chart,
-                              color: Colors.teal,
-                            ),
-                            Text(
-                              " StateWise Stats",
-                              style: GoogleFonts.montserrat(
-                                textStyle: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 18),
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                          color: Color(0xff212F3D),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => StateWiseStats(),
                               ),
-                            )
-                          ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Icon(
+                                Icons.table_chart,
+                                color: Colors.teal,
+                              ),
+                              Text(
+                                " StateWise Stats",
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 18),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.08,
-                    width: MediaQuery.of(context).size.width * 0.43,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 5.0,
-                          color: Color(0xff17202a),
-                          spreadRadius: 3.0,
-                        )
-                      ],
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                    ),
-                    child: Container(
-                      alignment: Alignment.center,
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.08,
+                      width: MediaQuery.of(context).size.width * 0.43,
                       decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 5.0,
+                            color: Color(0xff17202a),
+                            spreadRadius: 3.0,
+                          )
+                        ],
                         borderRadius: BorderRadius.all(
                           Radius.circular(10.0),
                         ),
-                        color: Color(0xff212F3D),
                       ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SpreadTrends(),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Icon(
-                              Icons.multiline_chart,
-                              color: Colors.redAccent,
-                            ),
-                            Text(
-                              " Spread Trends",
-                              style: GoogleFonts.montserrat(
-                                textStyle: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 18),
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                          color: Color(0xff212F3D),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SpreadTrends(),
                               ),
-                            )
-                          ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Icon(
+                                Icons.multiline_chart,
+                                color: Colors.redAccent,
+                              ),
+                              Text(
+                                " Spread Trends",
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 18),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            )
-          ],
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.08,
+                      width: MediaQuery.of(context).size.width * 0.43,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 5.0,
+                            color: Color(0xff17202a),
+                            spreadRadius: 3.0,
+                          )
+                        ],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                          color: Color(0xff212F3D),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => GlobStats(),
+                              ),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Icon(
+                                Icons.language,
+                                color: Colors.blue,
+                              ),
+                              Text(
+                                "Global Stats",
+                                style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 18),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         )
       ],
     );
