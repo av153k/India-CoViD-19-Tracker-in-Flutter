@@ -32,25 +32,27 @@ class _IndiaStats extends State<IndiaStats> {
 
   Widget build(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.all(5),
+      padding: EdgeInsets.all(3),
       scrollDirection: Axis.vertical,
       children: <Widget>[
         Container(
+          width: MediaQuery.of(context).size.width * 0.5,
           margin: EdgeInsets.all(5),
           height: 70,
-          alignment: Alignment(0.001, 0.2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Flags.getMiniFlag("IN", 25, 50),
-              Text(
-                "India CoViD-19 Stats",
-                style: GoogleFonts.montserrat(
-                  textStyle:
-                      TextStyle(fontWeight: FontWeight.w300, fontSize: 30),
-                  color: Colors.white,
+              Flexible(
+                child: Text(
+                  "India",
+                  style: GoogleFonts.montserrat(
+                    textStyle:
+                        TextStyle(fontWeight: FontWeight.w300, fontSize: 30),
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
               IconButton(
                 icon: Icon(
@@ -148,7 +150,7 @@ class _IndiaStats extends State<IndiaStats> {
                       ],
                     )),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.17,
+                  height: MediaQuery.of(context).size.height * 0.15,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[

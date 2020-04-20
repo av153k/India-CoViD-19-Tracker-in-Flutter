@@ -209,7 +209,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             int.parse(
                                 stateSnapshot.data.statewise[index].deaths),
                             Colors.grey),
-                      )
+                      ),
                     ],
                   );
                 }

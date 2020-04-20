@@ -225,13 +225,16 @@ Container getButtons(String name, IconData icon, double height, double width,
               icon,
               color: color1,
             ),
-            Text(
-              name,
-              style: GoogleFonts.montserrat(
-                textStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 18),
+            Flexible(
+              fit: FlexFit.loose,
+              child: Text(
+                name,
+                style: GoogleFonts.montserrat(
+                  textStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18),
+                ),
               ),
             )
           ],
