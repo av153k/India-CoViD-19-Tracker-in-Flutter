@@ -1,121 +1,97 @@
 class WorldStats {
-  Global global;
-  List<Countries> countries;
-  String date;
+  List<Results> results;
+  String stat;
 
-  WorldStats({this.global, this.countries, this.date});
+  WorldStats({this.results, this.stat});
 
   WorldStats.fromJson(Map<String, dynamic> json) {
-    global =
-        json['Global'] != null ? new Global.fromJson(json['Global']) : null;
-    if (json['Countries'] != null) {
-      countries = new List<Countries>();
-      json['Countries'].forEach((v) {
-        countries.add(new Countries.fromJson(v));
+    if (json['results'] != null) {
+      results = new List<Results>();
+      json['results'].forEach((v) {
+        results.add(new Results.fromJson(v));
       });
     }
-    date = json['Date'];
+    stat = json['stat'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.global != null) {
-      data['Global'] = this.global.toJson();
+    if (this.results != null) {
+      data['results'] = this.results.map((v) => v.toJson()).toList();
     }
-    if (this.countries != null) {
-      data['Countries'] = this.countries.map((v) => v.toJson()).toList();
-    }
-    data['Date'] = this.date;
+    data['stat'] = this.stat;
     return data;
   }
 }
 
-class Global {
-  int newConfirmed;
-  int totalConfirmed;
-  int newDeaths;
-  int totalDeaths;
-  int newRecovered;
+class Results {
+  int totalCases;
   int totalRecovered;
-
-  Global(
-      {this.newConfirmed,
-      this.totalConfirmed,
-      this.newDeaths,
-      this.totalDeaths,
-      this.newRecovered,
-      this.totalRecovered});
-
-  Global.fromJson(Map<String, dynamic> json) {
-    newConfirmed = json['NewConfirmed'];
-    totalConfirmed = json['TotalConfirmed'];
-    newDeaths = json['NewDeaths'];
-    totalDeaths = json['TotalDeaths'];
-    newRecovered = json['NewRecovered'];
-    totalRecovered = json['TotalRecovered'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['NewConfirmed'] = this.newConfirmed;
-    data['TotalConfirmed'] = this.totalConfirmed;
-    data['NewDeaths'] = this.newDeaths;
-    data['TotalDeaths'] = this.totalDeaths;
-    data['NewRecovered'] = this.newRecovered;
-    data['TotalRecovered'] = this.totalRecovered;
-    return data;
-  }
-}
-
-class Countries {
-  String country;
-  String countryCode;
-  String slug;
-  int newConfirmed;
-  int totalConfirmed;
-  int newDeaths;
+  int totalUnresolved;
   int totalDeaths;
-  int newRecovered;
-  int totalRecovered;
-  String date;
+  int totalNewCasesToday;
+  int totalNewDeathsToday;
+  int totalActiveCases;
+  int totalSeriousCases;
+  int totalAffectedCountries;
+  Source source;
 
-  Countries(
-      {this.country,
-      this.countryCode,
-      this.slug,
-      this.newConfirmed,
-      this.totalConfirmed,
-      this.newDeaths,
-      this.totalDeaths,
-      this.newRecovered,
+  Results(
+      {this.totalCases,
       this.totalRecovered,
-      this.date});
+      this.totalUnresolved,
+      this.totalDeaths,
+      this.totalNewCasesToday,
+      this.totalNewDeathsToday,
+      this.totalActiveCases,
+      this.totalSeriousCases,
+      this.totalAffectedCountries,
+      this.source});
 
-  Countries.fromJson(Map<String, dynamic> json) {
-    country = json['Country'];
-    countryCode = json['CountryCode'];
-    slug = json['Slug'];
-    newConfirmed = json['NewConfirmed'];
-    totalConfirmed = json['TotalConfirmed'];
-    newDeaths = json['NewDeaths'];
-    totalDeaths = json['TotalDeaths'];
-    newRecovered = json['NewRecovered'];
-    totalRecovered = json['TotalRecovered'];
-    date = json['Date'];
+  Results.fromJson(Map<String, dynamic> json) {
+    totalCases = json['total_cases'];
+    totalRecovered = json['total_recovered'];
+    totalUnresolved = json['total_unresolved'];
+    totalDeaths = json['total_deaths'];
+    totalNewCasesToday = json['total_new_cases_today'];
+    totalNewDeathsToday = json['total_new_deaths_today'];
+    totalActiveCases = json['total_active_cases'];
+    totalSeriousCases = json['total_serious_cases'];
+    totalAffectedCountries = json['total_affected_countries'];
+    source =
+        json['source'] != null ? new Source.fromJson(json['source']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Country'] = this.country;
-    data['CountryCode'] = this.countryCode;
-    data['Slug'] = this.slug;
-    data['NewConfirmed'] = this.newConfirmed;
-    data['TotalConfirmed'] = this.totalConfirmed;
-    data['NewDeaths'] = this.newDeaths;
-    data['TotalDeaths'] = this.totalDeaths;
-    data['NewRecovered'] = this.newRecovered;
-    data['TotalRecovered'] = this.totalRecovered;
-    data['Date'] = this.date;
+    data['total_cases'] = this.totalCases;
+    data['total_recovered'] = this.totalRecovered;
+    data['total_unresolved'] = this.totalUnresolved;
+    data['total_deaths'] = this.totalDeaths;
+    data['total_new_cases_today'] = this.totalNewCasesToday;
+    data['total_new_deaths_today'] = this.totalNewDeathsToday;
+    data['total_active_cases'] = this.totalActiveCases;
+    data['total_serious_cases'] = this.totalSeriousCases;
+    data['total_affected_countries'] = this.totalAffectedCountries;
+    if (this.source != null) {
+      data['source'] = this.source.toJson();
+    }
+    return data;
+  }
+}
+
+class Source {
+  String url;
+
+  Source({this.url});
+
+  Source.fromJson(Map<String, dynamic> json) {
+    url = json['url'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['url'] = this.url;
     return data;
   }
 }

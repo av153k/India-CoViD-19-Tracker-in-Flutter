@@ -94,19 +94,20 @@ class _GlobStats extends State<GlobStats> {
                   );
                 }
 
-                int confirmedCases = dataSnapshot.data.global.totalConfirmed;
-                int confirmedCasesDelta = dataSnapshot.data.global.newConfirmed;
-                int activeCases = (dataSnapshot.data.global.totalConfirmed -
-                    (dataSnapshot.data.global.totalDeaths +
-                        dataSnapshot.data.global.totalRecovered));
-                int recoveredCases = dataSnapshot.data.global.totalRecovered;
-                int recoveredCasesDelta = dataSnapshot.data.global.newRecovered;
-                int deceasedCases = dataSnapshot.data.global.totalDeaths;
-                int deceasedCasesDelta = dataSnapshot.data.global.newDeaths;
+                String filler = 'NA';
 
-                int activeDelta = (dataSnapshot.data.global.newConfirmed -
-                    (dataSnapshot.data.global.newDeaths +
-                        dataSnapshot.data.global.newRecovered));
+                int confirmedCases = dataSnapshot.data.results[0].totalCases;
+                int confirmedCasesDelta =
+                    dataSnapshot.data.results[0].totalNewCasesToday;
+                int activeCases = dataSnapshot.data.results[0].totalActiveCases;
+                int recoveredCases =
+                    dataSnapshot.data.results[0].totalRecovered;
+                int recoveredCasesDelta = int.tryParse(filler);
+                int deceasedCases = dataSnapshot.data.results[0].totalDeaths;
+                int deceasedCasesDelta =
+                    dataSnapshot.data.results[0].totalNewDeathsToday;
+
+                int activeDelta = int.tryParse(filler);
 
                 return Column(
                   children: <Widget>[
@@ -114,7 +115,7 @@ class _GlobStats extends State<GlobStats> {
                       height: 20.0,
                       alignment: Alignment(0.005, 0.2),
                       child: Text(
-                        "Database last updated on : ${(dataSnapshot.data.date).substring(0, 10)}, ${(dataSnapshot.data.date).substring(12, 16)}, GMT",
+                        "Database last Sync : Few Second earlier",
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
                           color: Colors.white,
