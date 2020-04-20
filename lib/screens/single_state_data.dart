@@ -1,3 +1,4 @@
+import 'package:covid_india_tracker/assets/common_functions.dart';
 import 'package:covid_india_tracker/screens/state_test_statistics.dart';
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
@@ -122,7 +123,6 @@ class _SingleState extends State<SingleState> {
                     singleStateSnap.data.statewise[widget.stateIndex].deaths;
                 String deathsDelta = singleStateSnap
                     .data.statewise[widget.stateIndex].deltadeaths;
-                String tested = "NA";
                 int activeDelta = (int.parse(confirmedDelta) -
                     (int.parse(deathsDelta) + int.parse(recoveredDelta)));
 
@@ -133,166 +133,22 @@ class _SingleState extends State<SingleState> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff212F3D),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Text(
-                                    "Confirmed",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 18)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    "+$confirmedDelta",
-                                    style: TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$confirmed",
-                                    style: TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff212F3D),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    "Active",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 18)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    "+$activeDelta",
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$active",
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff212F3D),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    "Recovered",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 18)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    "+$recoveredDelta",
-                                    style: TextStyle(
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$recovered",
-                                    style: TextStyle(
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          getContainer(
+                              "Confirmed",
+                              int.parse(confirmed),
+                              int.parse(confirmedDelta),
+                              0.3,
+                              context,
+                              Colors.red),
+                          getContainer("Active", int.parse(active), activeDelta,
+                              0.3, context, Colors.blue),
+                          getContainer(
+                              "Recovered",
+                              int.parse(recovered),
+                              int.parse(recoveredDelta),
+                              0.3,
+                              context,
+                              Colors.green),
                         ],
                       ),
                     ),
@@ -301,59 +157,13 @@ class _SingleState extends State<SingleState> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff212F3D),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    "Deceased",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w300)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    "+$deathsDelta",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$deaths",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                          getContainer(
+                              "Deceased",
+                              int.parse(deaths),
+                              int.parse(deathsDelta),
+                              0.3,
+                              context,
+                              Colors.grey),
                           StateTest(
                               state: singleStateSnap
                                   .data.statewise[widget.stateIndex].state)
@@ -372,8 +182,6 @@ class _SingleState extends State<SingleState> {
                   return Center(child: LinearProgressIndicator());
                 }
 
-                bool _sortAsc = false;
-
                 List<DistrictsStats> _districts = List<DistrictsStats>();
 
                 for (var i = 0; i < districtsSnap.data.length; i++) {
@@ -383,18 +191,6 @@ class _SingleState extends State<SingleState> {
                         confirmed: districtsSnap.data[i].confirmed,
                         deltaConfirmed: districtsSnap.data[i].delta.confirmed),
                   );
-                }
-
-                onSortColumn(int columnIndex, bool ascending) {
-                  if (columnIndex == 0) {
-                    if (ascending) {
-                      _districts
-                        ..sort((a, b) => a.confirmed.compareTo(b.confirmed));
-                    } else {
-                      _districts
-                        ..sort((a, b) => b.confirmed.compareTo(a.confirmed));
-                    }
-                  }
                 }
 
                 Row finalConfirmed(DistrictsStats district) {
@@ -429,86 +225,8 @@ class _SingleState extends State<SingleState> {
                 }
 
                 var dataColumns = [
-                  DataColumn(
-                    label: Container(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      height: MediaQuery.of(context).size.height * 0.08,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 2,
-                            color: Color(0xff17202a),
-                            spreadRadius: 2,
-                          )
-                        ],
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xff212F3D),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "District",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.purple,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  DataColumn(
-                      numeric: true,
-                      label: Container(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.08,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 2,
-                              color: Color(0xff17202a),
-                              spreadRadius: 2,
-                            )
-                          ],
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xff212F3D),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Confirmed",
-                            style: GoogleFonts.montserrat(
-                              textStyle: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      onSort: (columnIndex, ascending) {
-                        setState(() {
-                          _sortAsc = !_sortAsc;
-                        });
-                        onSortColumn(columnIndex, ascending);
-                      }),
+                  getDataColumn2(context, "Districts", Colors.purple),
+                  getDataColumn2(context, "Confirmed", Colors.red)
                 ];
                 var dataRows = _districts
                     .map(

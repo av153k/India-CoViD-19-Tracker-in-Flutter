@@ -1,3 +1,4 @@
+import 'package:covid_india_tracker/assets/common_functions.dart';
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/services/data_fetcher.dart";
@@ -97,95 +98,6 @@ class _StateWiseStats extends State<StateWiseStats> {
                     child: CircularProgressIndicator(),
                   );
                 }
-                Column finalConfirmed(int index) {
-                  if (int.parse(
-                          stateSnapshot.data.statewise[index].deltaconfirmed) !=
-                      0) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(
-                          "\u{2B06} ${stateSnapshot.data.statewise[index].deltaconfirmed}",
-                          style: TextStyle(color: Colors.red, fontSize: 13),
-                        ),
-                        Text(
-                          stateSnapshot.data.statewise[index].confirmed,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          stateSnapshot.data.statewise[index].confirmed,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    );
-                  }
-                }
-
-                Column finalRecoveries(int index) {
-                  if (int.parse(
-                          stateSnapshot.data.statewise[index].deltarecovered) !=
-                      0) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(
-                          "\u{2B06} ${stateSnapshot.data.statewise[index].deltarecovered}",
-                          style: TextStyle(color: Colors.green, fontSize: 13),
-                        ),
-                        Text(
-                          stateSnapshot.data.statewise[index].recovered,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          stateSnapshot.data.statewise[index].recovered,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    );
-                  }
-                }
-
-                Column finalDeath(int index) {
-                  if (int.parse(
-                          stateSnapshot.data.statewise[index].deltadeaths) !=
-                      0) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(
-                          "\u{2B06} ${stateSnapshot.data.statewise[index].deltadeaths}",
-                          style: TextStyle(color: Colors.grey, fontSize: 13),
-                        ),
-                        Text(
-                          stateSnapshot.data.statewise[index].deaths,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          stateSnapshot.data.statewise[index].deaths,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    );
-                  }
-                }
 
                 DataRow _getDataRow(index) {
                   return DataRow(
@@ -209,7 +121,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute<String>(
+                                MaterialPageRoute(
                                   builder: (context) => SingleState(
                                     state: stateSnapshot
                                         .data.statewise[index].state,
@@ -237,32 +149,15 @@ class _StateWiseStats extends State<StateWiseStats> {
                           ),
                         ),
                       ),
-                      DataCell(
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.06,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 2,
-                                color: Color(0xff17202a),
-                                spreadRadius: 2,
-                              )
-                            ],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: Color(0xff212F3D),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width * 0.15,
-                              child: finalConfirmed(index)),
-                        ),
+                      getDataCells(
+                        context,
+                        0.15,
+                        finalStats(
+                            int.parse(stateSnapshot
+                                .data.statewise[index].deltaconfirmed),
+                            int.parse(
+                                stateSnapshot.data.statewise[index].confirmed),
+                            Colors.red),
                       ),
                       DataCell(
                         Container(
@@ -295,60 +190,26 @@ class _StateWiseStats extends State<StateWiseStats> {
                           ),
                         ),
                       ),
-                      DataCell(
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.06,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 2,
-                                color: Color(0xff17202a),
-                                spreadRadius: 2,
-                              )
-                            ],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: Color(0xff212F3D),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width * 0.17,
-                              child: finalRecoveries(index)),
-                        ),
+                      getDataCells(
+                        context,
+                        0.15,
+                        finalStats(
+                            int.parse(stateSnapshot
+                                .data.statewise[index].deltarecovered),
+                            int.parse(
+                                stateSnapshot.data.statewise[index].recovered),
+                            Colors.green),
                       ),
-                      DataCell(
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.06,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 2,
-                                color: Color(0xff17202a),
-                                spreadRadius: 2,
-                              )
-                            ],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: Color(0xff212F3D),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width * 0.15,
-                              child: finalDeath(index)),
-                        ),
-                      ),
+                      getDataCells(
+                        context,
+                        0.15,
+                        finalStats(
+                            int.parse(stateSnapshot
+                                .data.statewise[index].deltadeaths),
+                            int.parse(
+                                stateSnapshot.data.statewise[index].deaths),
+                            Colors.grey),
+                      )
                     ],
                   );
                 }
@@ -360,66 +221,11 @@ class _StateWiseStats extends State<StateWiseStats> {
                   sortAscending: true,
                   dataRowHeight: MediaQuery.of(context).size.height * 0.1,
                   columns: [
-                    DataColumn(
-                      numeric: false,
-                      label: Text(
-                        "State",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.purple),
-                        ),
-                      ),
-                    ),
-                    DataColumn(
-                      numeric: true,
-                      label: Text(
-                        "Cnfmd",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.red),
-                        ),
-                      ),
-                    ),
-                    DataColumn(
-                      numeric: true,
-                      label: Text(
-                        "Active",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.blue),
-                        ),
-                      ),
-                    ),
-                    DataColumn(
-                      numeric: true,
-                      label: Text(
-                        "Rcvrd",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.green),
-                        ),
-                      ),
-                    ),
-                    DataColumn(
-                      numeric: true,
-                      label: Text(
-                        "Dcsd",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                      ),
-                    )
+                    getDataColumn("State", Colors.purple),
+                    getDataColumn("Cnfmd", Colors.red),
+                    getDataColumn("Active", Colors.blue),
+                    getDataColumn("Rcvrd", Colors.green),
+                    getDataColumn("Dcsd", Colors.grey)
                   ],
                   rows: List.generate(stateSnapshot.data.statewise.length - 1,
                       (index) => _getDataRow(index + 1)),

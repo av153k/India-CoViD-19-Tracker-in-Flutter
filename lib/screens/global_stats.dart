@@ -1,3 +1,4 @@
+import 'package:covid_india_tracker/assets/common_functions.dart';
 import 'package:covid_india_tracker/models/world_data_api.dart';
 import 'package:covid_india_tracker/services/get_world_data.dart';
 import "package:flutter/material.dart";
@@ -125,113 +126,10 @@ class _GlobStats extends State<GlobStats> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff212F3D),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Text(
-                                    "Confirmed",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 18)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    "+$confirmedCasesDelta",
-                                    style: TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$confirmedCases",
-                                    style: TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff212F3D),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    "Active",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 18)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    "+$activeDelta",
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$activeCases",
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                          getContainer("Confirmed", confirmedCases,
+                              confirmedCasesDelta, 0.35, context, Colors.red),
+                          getContainer("Active", activeCases, activeDelta, 0.35,
+                              context, Colors.blue)
                         ],
                       ),
                     ),
@@ -240,112 +138,10 @@ class _GlobStats extends State<GlobStats> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff212F3D),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    "Recovered",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 18)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    "+$recoveredCasesDelta",
-                                    style: TextStyle(
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$recoveredCases",
-                                    style: TextStyle(
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 5.0,
-                                    color: Color(0xff17202a),
-                                    spreadRadius: 2.0,
-                                    offset: Offset(8.0, 8.0))
-                              ],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
-                            height: 90,
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              color: Color(0xff212F3D),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    "Deceased",
-                                    style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w300)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    "+$deceasedCasesDelta",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                  Text(
-                                    "$deceasedCases",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                          getContainer("Recovered", recoveredCases,
+                              recoveredCasesDelta, 0.35, context, Colors.green),
+                          getContainer("Deceased", deceasedCases,
+                              deceasedCasesDelta, 0.35, context, Colors.grey),
                         ],
                       ),
                     )
