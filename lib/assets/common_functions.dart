@@ -166,7 +166,7 @@ Container getTested(int int1, int int2, BuildContext context) {
             },
           ),
           Text(
-            "+$int2",
+            " ",
             style: TextStyle(
                 color: Colors.yellow,
                 fontWeight: FontWeight.w300,
