@@ -228,7 +228,7 @@ class _AppInfo extends State<AppInfo> {
                             ),
                             child: InkWell(
                               onTap: () {
-                                launch("https://covid19api.com/");
+                                launch("https://corona.lmao.ninja/");
                               },
                               child: Row(
                                 mainAxisAlignment:
@@ -347,7 +347,8 @@ class _AppInfo extends State<AppInfo> {
                                 ),
                                 child: InkWell(
                                   onTap: () {
-                                    launch("https://www.linkedin.com/in/av153k/");
+                                    launch(
+                                        "https://www.linkedin.com/in/av153k/");
                                   },
                                   child: Row(
                                     mainAxisAlignment:
