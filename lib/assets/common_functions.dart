@@ -354,3 +354,15 @@ Column finalStats(int int1, int int2, Color color1) {
     );
   }
 }
+
+String getDate(int int1) {
+  var date = DateTime.now();
+  int day = date.day - int1;
+  int month = date.month;
+  int year = date.year;
+
+  String tempdate =
+      day.toString() + "/0" + month.toString() + "/" + year.toString();
+
+  return tempdate;
+}

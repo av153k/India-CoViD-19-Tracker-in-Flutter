@@ -6,9 +6,12 @@ import "package:covid_india_tracker/models/global_countries_api.dart";
 class CountrieStats {
   CountrieStats();
 
+  var endpoint = "https://corona.lmao.ninja/v2/countries?sort=country";
+
+
   Future<CountriesStats> getStats() async {
     var response =
-        await http.get("https://corona.lmao.ninja/v2/countries?sort=country");
+        await http.get(endpoint);
     var decodedJson = jsonDecode(response.body);
 
     return CountriesStats.fromJson(decodedJson);

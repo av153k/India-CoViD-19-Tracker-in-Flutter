@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:covid_india_tracker/models/states_tested.dart";
 import "package:covid_india_tracker/services/get_state_tested.dart";
+import "dart:core";
 
 StatesMiscData _stateTested = new StatesMiscData();
 
@@ -38,7 +39,7 @@ class _StateTest extends State<StateTest> {
                     fontSize: 15));
           } else {
             return Text(
-              "Not Available",
+              testedSnap.data.totaltested,
               style: TextStyle(
                   color: Colors.yellow,
                   fontWeight: FontWeight.w300,
