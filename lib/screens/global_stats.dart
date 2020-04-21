@@ -1,11 +1,13 @@
 import 'package:covid_india_tracker/assets/common_functions.dart';
 import 'package:covid_india_tracker/models/world_data_api.dart';
-import 'package:covid_india_tracker/screens/countries_stats.dart';
+import 'package:covid_india_tracker/screens/app_info.dart';
 import 'package:covid_india_tracker/services/get_world_data.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 import "package:google_fonts/google_fonts.dart";
 import "dart:async";
+
+import 'package:url_launcher/url_launcher.dart';
 
 GlobalStats _globalStats = new GlobalStats();
 
@@ -24,6 +26,52 @@ class _GlobStats extends State<GlobStats> {
   void initState() {
     super.initState();
     worldStats = getworldStats();
+  }
+
+  String getUtcdate() {
+    const months = <String>[
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    var dateNow = DateTime.now();
+    var dateUtc = dateNow.toUtc();
+    int day = dateUtc.day;
+    String month = months[dateUtc.month - 1];
+    String zero;
+    int hour;
+    String meridian;
+    int minutes = dateUtc.minute;
+    if (dateUtc.hour > 12) {
+      zero = "0";
+      hour = dateUtc.hour - 12;
+      meridian = "PM";
+    } else {
+      zero = "0";
+      hour = dateUtc.hour;
+      meridian = "AM";
+    }
+
+    String printableDate = day.toString() +
+        " " +
+        month +
+        ", " +
+        zero +
+        hour.toString() +
+        ":" +
+        minutes.toString() +
+        meridian;
+
+    return printableDate;
   }
 
   Widget build(BuildContext context) {
@@ -88,6 +136,27 @@ class _GlobStats extends State<GlobStats> {
                     },
                   )
                 ],
+              ),
+            ),
+            Container(
+              height: 40.0,
+              child: Container(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Ionicons.ios_clock,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      " ${getUtcdate()}",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             FutureBuilder(
@@ -162,17 +231,59 @@ class _GlobStats extends State<GlobStats> {
                     Container(
                       margin: EdgeInsets.only(top: 20),
                       padding: EdgeInsets.all(10),
+                      alignment: Alignment.center,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          getButtons(
-                            "View CountryWise Stats",
-                            Ionicons.ios_arrow_dropright_circle,
-                            0.08,
-                            0.7,
-                            context,
-                            Colors.deepPurple,
-                            Countries(),
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.07,
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 5.0,
+                                  color: Color(0xff17202a),
+                                  spreadRadius: 3.0,
+                                )
+                              ],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                color: Color(0xff212F3D),
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  launch(
+                                      "https://www.worldometers.info/coronavirus/#countries");
+                                },
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    Icon(Ionicons.ios_arrow_dropright,
+                                        color: Colors.deepPurple),
+                                    Flexible(
+                                      child: Text(
+                                        "View CountryWise Stats",
+                                        style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 17),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
