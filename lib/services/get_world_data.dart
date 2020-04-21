@@ -8,7 +8,7 @@ class GlobalStats {
 
   Future<WorldStats> getStats() async {
     var response =
-        await http.get("https://api.thevirustracker.com/free-api?global=stats");
+        await http.get("https://corona.lmao.ninja/v2/all");
     var decodedJson = jsonDecode(response.body);
 
     return WorldStats.fromJson(decodedJson);

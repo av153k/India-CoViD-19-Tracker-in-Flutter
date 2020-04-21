@@ -96,32 +96,17 @@ class _GlobStats extends State<GlobStats> {
 
                 String filler = 'NA';
 
-                int confirmedCases = dataSnapshot.data.results[0].totalCases;
-                int confirmedCasesDelta =
-                    dataSnapshot.data.results[0].totalNewCasesToday;
-                int activeCases = dataSnapshot.data.results[0].totalActiveCases;
-                int recoveredCases =
-                    dataSnapshot.data.results[0].totalRecovered;
+                int confirmedCases = dataSnapshot.data.cases;
+                int confirmedCasesDelta = dataSnapshot.data.todayCases;
+                int activeCases = dataSnapshot.data.active;
+                int recoveredCases = dataSnapshot.data.recovered;
                 int recoveredCasesDelta = int.tryParse(filler);
-                int deceasedCases = dataSnapshot.data.results[0].totalDeaths;
-                int deceasedCasesDelta =
-                    dataSnapshot.data.results[0].totalNewDeathsToday;
-
+                int deceasedCases = dataSnapshot.data.deaths;
+                int deceasedCasesDelta = dataSnapshot.data.todayDeaths;
                 int activeDelta = int.tryParse(filler);
 
                 return Column(
                   children: <Widget>[
-                    Container(
-                      height: 20.0,
-                      alignment: Alignment(0.005, 0.2),
-                      child: Text(
-                        "Database last Sync : Few Second earlier",
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.17,
                       child: Row(
