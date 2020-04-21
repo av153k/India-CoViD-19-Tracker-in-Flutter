@@ -1,5 +1,6 @@
 import 'package:covid_india_tracker/screens/app_info.dart';
 import 'package:covid_india_tracker/screens/global_stats.dart';
+import 'package:covid_india_tracker/screens/pateints_analysis.dart';
 import 'package:covid_india_tracker/screens/spread_trends.dart';
 import 'package:covid_india_tracker/screens/statewise_stats.dart';
 import "package:flutter/material.dart";
@@ -76,6 +77,10 @@ class _IndiaStats extends State<IndiaStats> {
             if (dataSnapshot.connectionState == ConnectionState.waiting) {
               return Center(
                 child: CircularProgressIndicator(),
+              );
+            } else if (dataSnapshot.connectionState == ConnectionState.none) {
+              return Center(
+                child: Text("You're offline, Please connect to Internet !!!"),
               );
             }
 
@@ -199,8 +204,8 @@ class _IndiaStats extends State<IndiaStats> {
                   children: <Widget>[
                     getButtons("StateWise Stats", Icons.table_chart, 0.08, 0.43,
                         context, Colors.purple, StateWiseStats()),
-                    getButtons("Spread Trends", Octicons.graph, 0.08, 0.43,
-                        context, Colors.redAccent, SpreadTrends()),
+                    getButtons("Spread Trends", Ionicons.md_analytics, 0.08,
+                        0.43, context, Colors.redAccent, SpreadTrends()),
                   ],
                 ),
               ),
@@ -208,6 +213,8 @@ class _IndiaStats extends State<IndiaStats> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
+                    /*getButtons("Deep Dive", MaterialCommunityIcons.graphql,
+                        0.08, 0.43, context, Colors.green, PatientsAnalysis()),*/
                     getButtons("Global Stats", Octicons.globe, 0.08, 0.43,
                         context, Colors.blue, GlobStats()),
                   ],

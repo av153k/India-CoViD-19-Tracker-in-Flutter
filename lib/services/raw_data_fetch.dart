@@ -7,7 +7,7 @@ class RawDataStats {
   RawDataStats();
 
   Future<RawDataSet> getStats() async {
-    var res = await http.get("https://api.covid19india.org/data.json");
+    var res = await http.get("https://api.covid19india.org/raw_data.json");
     var decodedJson = jsonDecode(res.body);
 
     RawDataSet rawDataset = RawDataSet.fromJson(decodedJson);
