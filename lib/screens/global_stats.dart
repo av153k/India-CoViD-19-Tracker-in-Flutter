@@ -1,5 +1,6 @@
 import 'package:covid_india_tracker/assets/common_functions.dart';
 import 'package:covid_india_tracker/models/world_data_api.dart';
+import 'package:covid_india_tracker/screens/countries_stats.dart';
 import 'package:covid_india_tracker/services/get_world_data.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
@@ -36,7 +37,13 @@ class _GlobStats extends State<GlobStats> {
               Navigator.pop(context);
             },
           ),
-          title: Text("Global Stats"),
+          title: Text(
+            "Global Stats",
+            style: GoogleFonts.montserrat(
+              textStyle:
+                  TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+            ),
+          ),
           backgroundColor: Color(0xff17202a),
         ),
         body: ListView(
@@ -50,24 +57,21 @@ class _GlobStats extends State<GlobStats> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Icon(
-                        Octicons.globe,
-                        color: Colors.teal,
-                        size: 30,
+                  Icon(
+                    Octicons.globe,
+                    color: Colors.teal,
+                    size: 30,
+                  ),
+                  Flexible(
+                    child: Text(
+                      "Global",
+                      style: GoogleFonts.montserrat(
+                        textStyle: TextStyle(
+                            fontWeight: FontWeight.w300, fontSize: 30),
+                        color: Colors.white,
                       ),
-                      Text(
-                        " Global Stats",
-                        style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                              fontWeight: FontWeight.w300, fontSize: 30),
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   IconButton(
                     icon: Icon(
@@ -76,9 +80,11 @@ class _GlobStats extends State<GlobStats> {
                       size: 30,
                     ),
                     onPressed: () {
-                      setState(() {
-                        worldStats = getworldStats();
-                      });
+                      setState(
+                        () {
+                          worldStats = getworldStats();
+                        },
+                      );
                     },
                   )
                 ],
@@ -114,8 +120,8 @@ class _GlobStats extends State<GlobStats> {
                         children: <Widget>[
                           getContainer("Confirmed", confirmedCases,
                               confirmedCasesDelta, 0.35, context, Colors.red),
-                          getContainer("Active", activeCases, activeDelta, 0.35,
-                              context, Colors.blue)
+                          getContainer("Deceased", deceasedCases,
+                              deceasedCasesDelta, 0.35, context, Colors.grey),
                         ],
                       ),
                     ),
@@ -126,11 +132,51 @@ class _GlobStats extends State<GlobStats> {
                         children: <Widget>[
                           getContainer("Recovered", recoveredCases,
                               recoveredCasesDelta, 0.35, context, Colors.green),
-                          getContainer("Deceased", deceasedCases,
-                              deceasedCasesDelta, 0.35, context, Colors.grey),
+                          getContainer("Active", activeCases, activeDelta, 0.35,
+                              context, Colors.blue)
                         ],
                       ),
-                    )
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          getContainer(
+                              "Cases/Mil",
+                              dataSnapshot.data.casesPerOneMillion,
+                              recoveredCasesDelta,
+                              0.35,
+                              context,
+                              Colors.redAccent),
+                          getContainer(
+                              "Deaths/Mil",
+                              dataSnapshot.data.deathsPerOneMillion,
+                              activeDelta,
+                              0.35,
+                              context,
+                              Colors.grey),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 20),
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          getButtons(
+                            "View CountryWise Stats",
+                            Ionicons.ios_arrow_dropright_circle,
+                            0.08,
+                            0.7,
+                            context,
+                            Colors.deepPurple,
+                            Countries(),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 );
               },

@@ -98,11 +98,12 @@ Container getContainer(String string1, int int1, int int2, double width,
                     color: color1, fontWeight: FontWeight.w300, fontSize: 18)),
             textAlign: TextAlign.center,
           ),
-          Text(
-            "+$int2",
-            style: TextStyle(
-                color: color1, fontWeight: FontWeight.w300, fontSize: 14),
-          ),
+          if (int2 != null)
+            Text(
+              "+$int2",
+              style: TextStyle(
+                  color: color1, fontWeight: FontWeight.w300, fontSize: 14),
+            ),
           Text(
             "$int1",
             style: TextStyle(
