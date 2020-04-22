@@ -32,11 +32,14 @@ class _StateTest extends State<StateTest> {
 
         Text getTestedData() {
           if (testedSnap.data == null) {
-            return Text("Not Available",
-                style: TextStyle(
-                    color: Colors.yellow,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 15));
+            return Text(
+              "Not Available",
+              style: TextStyle(
+                  color: Colors.yellow,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 15),
+              textScaleFactor: 1.0,
+            );
           } else {
             return Text(
               testedSnap.data.totaltested,
@@ -44,6 +47,7 @@ class _StateTest extends State<StateTest> {
                   color: Colors.yellow,
                   fontWeight: FontWeight.w300,
                   fontSize: 17),
+              textScaleFactor: 1.0,
             );
           }
         }
@@ -81,6 +85,7 @@ class _StateTest extends State<StateTest> {
                           fontSize: 18,
                           fontWeight: FontWeight.w300)),
                   textAlign: TextAlign.center,
+                  textScaleFactor: 1.0,
                 ),
                 Text(
                   " ",
@@ -88,6 +93,7 @@ class _StateTest extends State<StateTest> {
                       color: Colors.grey,
                       fontWeight: FontWeight.w300,
                       fontSize: 14),
+                  textScaleFactor: 1.0,
                 ),
                 getTestedData()
               ],

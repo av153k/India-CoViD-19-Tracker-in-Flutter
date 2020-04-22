@@ -53,6 +53,7 @@ class _IndiaStats extends State<IndiaStats> {
                     color: Colors.white,
                   ),
                   textAlign: TextAlign.center,
+                  textScaleFactor: 1.0,
                 ),
               ),
               IconButton(
@@ -147,10 +148,11 @@ class _IndiaStats extends State<IndiaStats> {
                           color: Colors.white,
                         ),
                         Text(
-                          " Database last sync : ${getFormattedTime(dataSnapshot.data.statewise[0].lastupdatedtime)}",
+                          " Database last sync : ${getFormattedTime(dataSnapshot.data.statewise[0].lastupdatedtime)} IST",
                           style: TextStyle(
                             color: Colors.white,
                           ),
+                          textScaleFactor: 1.0,
                         ),
                       ],
                     )),
@@ -196,6 +198,7 @@ class _IndiaStats extends State<IndiaStats> {
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(color: Colors.white, fontSize: 20),
                   ),
+                  textScaleFactor: 1.0,
                 ),
               ),
               Container(

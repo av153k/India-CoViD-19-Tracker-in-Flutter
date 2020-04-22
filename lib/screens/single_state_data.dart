@@ -59,7 +59,14 @@ class _SingleState extends State<SingleState> {
               Navigator.pop(context);
             },
           ),
-          title: Text(widget.state),
+          title: Text(
+            widget.state,
+            style: GoogleFonts.montserrat(
+              textStyle:
+                  TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+            ),
+            textScaleFactor: 1.0,
+          ),
           backgroundColor: Color(0xff17202a),
         ),
         body: ListView(
@@ -79,6 +86,7 @@ class _SingleState extends State<SingleState> {
                           TextStyle(fontWeight: FontWeight.w300, fontSize: 23),
                       color: Colors.white,
                     ),
+                    textScaleFactor: 1.0,
                     textAlign: TextAlign.center,
                   ),
                   IconButton(
@@ -204,10 +212,15 @@ class _SingleState extends State<SingleState> {
                             color: Colors.red,
                             fontSize: 13,
                           ),
+                          textScaleFactor: 1.0,
                         ),
                         Text(
                           "${district.confirmed}",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                          textScaleFactor: 1.0,
                         ),
                       ],
                     );
@@ -217,7 +230,8 @@ class _SingleState extends State<SingleState> {
                       children: <Widget>[
                         Text(
                           '${district.confirmed}',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                          textScaleFactor: 1.0,
                         ),
                       ],
                     );
@@ -258,7 +272,9 @@ class _SingleState extends State<SingleState> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   district.name,
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15),
+                                  textScaleFactor: 1.0,
                                 ),
                               ),
                             ),
@@ -309,6 +325,7 @@ class _SingleState extends State<SingleState> {
                             textStyle:
                                 TextStyle(color: Colors.white, fontSize: 20),
                           ),
+                          textScaleFactor: 1.0,
                         ),
                       ),
                       DataTable(

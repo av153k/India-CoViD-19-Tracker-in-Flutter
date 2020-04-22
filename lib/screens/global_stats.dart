@@ -1,6 +1,5 @@
 import 'package:covid_india_tracker/assets/common_functions.dart';
 import 'package:covid_india_tracker/models/world_data_api.dart';
-import 'package:covid_india_tracker/screens/app_info.dart';
 import 'package:covid_india_tracker/services/get_world_data.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
@@ -28,52 +27,6 @@ class _GlobStats extends State<GlobStats> {
     worldStats = getworldStats();
   }
 
-  String getUtcdate() {
-    const months = <String>[
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    var dateNow = DateTime.now();
-    var dateUtc = dateNow.toUtc();
-    int day = dateUtc.day;
-    String month = months[dateUtc.month - 1];
-    String zero;
-    int hour;
-    String meridian;
-    int minutes = dateUtc.minute;
-    if (dateUtc.hour > 12) {
-      zero = "0";
-      hour = dateUtc.hour - 12;
-      meridian = "PM";
-    } else {
-      zero = "0";
-      hour = dateUtc.hour;
-      meridian = "AM";
-    }
-
-    String printableDate = day.toString() +
-        " " +
-        month +
-        ", " +
-        zero +
-        hour.toString() +
-        ":" +
-        minutes.toString() +
-        meridian;
-
-    return printableDate;
-  }
-
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -91,6 +44,7 @@ class _GlobStats extends State<GlobStats> {
               textStyle:
                   TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
             ),
+            textScaleFactor: 1.0,
           ),
           backgroundColor: Color(0xff17202a),
         ),
@@ -118,6 +72,7 @@ class _GlobStats extends State<GlobStats> {
                             fontWeight: FontWeight.w300, fontSize: 30),
                         color: Colors.white,
                       ),
+                      textScaleFactor: 1.0,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -150,10 +105,11 @@ class _GlobStats extends State<GlobStats> {
                       color: Colors.white,
                     ),
                     Text(
-                      " ${getUtcdate()}",
+                      " ${getUtcdate()} GMT",
                       style: TextStyle(
                         color: Colors.white,
                       ),
+                      textScaleFactor: 1.0,
                     ),
                   ],
                 ),

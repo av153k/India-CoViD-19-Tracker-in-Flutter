@@ -43,6 +43,7 @@ class _StateWiseStats extends State<StateWiseStats> {
               textStyle:
                   TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
             ),
+            textScaleFactor: 1.0,
           ),
         ),
         body: ListView(
@@ -64,6 +65,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                       color: Colors.white,
                     ),
                     textAlign: TextAlign.center,
+                    textScaleFactor: 1.0,
                   ),
                   IconButton(
                     icon: Icon(Icons.refresh, color: Colors.white),
@@ -87,6 +89,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                   fontStyle: FontStyle.italic,
                   color: Colors.white,
                 ),
+                textScaleFactor: 1.0,
               ),
             ),
             FutureBuilder(
@@ -144,6 +147,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                                 stateSnapshot.data.statewise[index].state,
                                 style:
                                     GoogleFonts.montserrat(color: Colors.white),
+                                textScaleFactor: 1.0,
                               ),
                             ),
                           ),
@@ -186,6 +190,7 @@ class _StateWiseStats extends State<StateWiseStats> {
                             child: Text(
                               stateSnapshot.data.statewise[index].active,
                               style: TextStyle(color: Colors.white),
+                              textScaleFactor: 1.0,
                             ),
                           ),
                         ),

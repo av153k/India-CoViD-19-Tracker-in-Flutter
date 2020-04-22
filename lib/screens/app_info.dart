@@ -22,7 +22,14 @@ class _AppInfo extends State<AppInfo> {
             },
           ),
           backgroundColor: Color(0xff17202a),
-          title: Text("App Info"),
+          title: Text(
+            "App Info",
+            style: GoogleFonts.montserrat(
+              textStyle:
+                  TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+            ),
+            textScaleFactor: 1.0,
+          ),
         ),
         body: ListView(
           children: <Widget>[
@@ -43,6 +50,7 @@ class _AppInfo extends State<AppInfo> {
                               textStyle:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
+                            textScaleFactor: 1.0,
                           ),
                         ),
                         Container(
@@ -85,6 +93,7 @@ class _AppInfo extends State<AppInfo> {
                                           fontWeight: FontWeight.w300,
                                           fontSize: 17),
                                     ),
+                                    textScaleFactor: 1.0,
                                   )
                                 ],
                               ),
@@ -131,6 +140,7 @@ class _AppInfo extends State<AppInfo> {
                                           fontWeight: FontWeight.w300,
                                           fontSize: 17),
                                     ),
+                                    textScaleFactor: 1.0,
                                   )
                                 ],
                               ),
@@ -154,6 +164,7 @@ class _AppInfo extends State<AppInfo> {
                               textStyle:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
+                            textScaleFactor: 1.0,
                           ),
                         ),
                         Container(
@@ -197,6 +208,7 @@ class _AppInfo extends State<AppInfo> {
                                           fontWeight: FontWeight.w300,
                                           fontSize: 17),
                                     ),
+                                    textScaleFactor: 1.0,
                                   )
                                 ],
                               ),
@@ -247,6 +259,7 @@ class _AppInfo extends State<AppInfo> {
                                           fontWeight: FontWeight.w300,
                                           fontSize: 17),
                                     ),
+                                    textScaleFactor: 1.0,
                                   )
                                 ],
                               ),
@@ -270,6 +283,7 @@ class _AppInfo extends State<AppInfo> {
                               textStyle:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
+                            textScaleFactor: 1.0,
                           ),
                         ),
                         Row(
@@ -316,6 +330,7 @@ class _AppInfo extends State<AppInfo> {
                                               fontWeight: FontWeight.w300,
                                               fontSize: 17),
                                         ),
+                                        textScaleFactor: 1.0,
                                       )
                                     ],
                                   ),
@@ -364,6 +379,7 @@ class _AppInfo extends State<AppInfo> {
                                               fontWeight: FontWeight.w300,
                                               fontSize: 17),
                                         ),
+                                        textScaleFactor: 1.0,
                                       )
                                     ],
                                   ),
@@ -419,6 +435,7 @@ class _AppInfo extends State<AppInfo> {
                                               fontWeight: FontWeight.w300,
                                               fontSize: 17),
                                         ),
+                                        textScaleFactor: 1.0,
                                       )
                                     ],
                                   ),
@@ -467,6 +484,7 @@ class _AppInfo extends State<AppInfo> {
                                               fontWeight: FontWeight.w300,
                                               fontSize: 17),
                                         ),
+                                        textScaleFactor: 1.0,
                                       )
                                     ],
                                   ),

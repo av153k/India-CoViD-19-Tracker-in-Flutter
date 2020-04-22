@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
               textStyle:
                   TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
             ),
+            textScaleFactor: 1.0,
           ),
         ),
         body: IndiaStats(),

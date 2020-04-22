@@ -46,9 +46,16 @@ showAlertDialog(BuildContext context) {
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     backgroundColor: Color(0xff212F3D),
-    title: Text("Tested Info !", style: TextStyle(color: Colors.white)),
-    content: Text("Tested data gets updated only after Midnight.",
-        style: TextStyle(color: Colors.white)),
+    title: Text(
+      "Tested Info !",
+      style: TextStyle(color: Colors.white),
+      textScaleFactor: 1.0,
+    ),
+    content: Text(
+      "Tested data gets updated only after Midnight.",
+      style: TextStyle(color: Colors.white),
+      textScaleFactor: 1.0,
+    ),
     actions: [
       okButton,
     ],
@@ -97,17 +104,20 @@ Container getContainer(String string1, int int1, int int2, double width,
                 textStyle: TextStyle(
                     color: color1, fontWeight: FontWeight.w300, fontSize: 18)),
             textAlign: TextAlign.center,
+            textScaleFactor: 1.0,
           ),
           if (int2 != null)
             Text(
               "+$int2",
               style: TextStyle(
                   color: color1, fontWeight: FontWeight.w300, fontSize: 14),
+              textScaleFactor: 1.0,
             ),
           Text(
             "$int1",
             style: TextStyle(
                 color: color1, fontWeight: FontWeight.w300, fontSize: 17),
+            textScaleFactor: 1.0,
           ),
         ],
       ),
@@ -153,6 +163,7 @@ Container getTested(int int1, int int2, BuildContext context) {
                           fontSize: 18,
                           fontWeight: FontWeight.w300)),
                   textAlign: TextAlign.center,
+                  textScaleFactor: 1.0,
                 ),
                 Icon(
                   Octicons.alert,
@@ -171,6 +182,7 @@ Container getTested(int int1, int int2, BuildContext context) {
                 color: Colors.yellow,
                 fontWeight: FontWeight.w300,
                 fontSize: 14),
+            textScaleFactor: 1.0,
           ),
           Text(
             "$int1",
@@ -178,6 +190,7 @@ Container getTested(int int1, int int2, BuildContext context) {
                 color: Colors.yellow,
                 fontWeight: FontWeight.w300,
                 fontSize: 17),
+            textScaleFactor: 1.0,
           )
         ],
       ),
@@ -232,10 +245,12 @@ Container getButtons(String name, IconData icon, double height, double width,
                 name,
                 style: GoogleFonts.montserrat(
                   textStyle: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18),
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 18,
+                  ),
                 ),
+                textScaleFactor: 1.0,
               ),
             )
           ],
@@ -284,6 +299,7 @@ DataColumn getDataColumn(String string1, Color color1) {
         textStyle:
             TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: color1),
       ),
+      textScaleFactor: 1.0,
     ),
   );
 }
@@ -322,6 +338,7 @@ DataColumn getDataColumn2(BuildContext context, String string1, Color color1) {
               color: color1,
             ),
           ),
+          textScaleFactor: 1.0,
         ),
       ),
     ),
@@ -336,10 +353,12 @@ Column finalStats(int int1, int int2, Color color1) {
         Text(
           "\u{2B06} $int1",
           style: TextStyle(color: color1, fontSize: 13),
+          textScaleFactor: 1.0,
         ),
         Text(
           "$int2",
           style: TextStyle(color: Colors.white),
+          textScaleFactor: 1.0,
         ),
       ],
     );
@@ -350,6 +369,7 @@ Column finalStats(int int1, int int2, Color color1) {
         Text(
           "$int2",
           style: TextStyle(color: Colors.white),
+          textScaleFactor: 1.0,
         ),
       ],
     );
@@ -366,4 +386,50 @@ String getDate(int int1) {
       day.toString() + "/0" + month.toString() + "/" + year.toString();
 
   return tempdate;
+}
+
+String getUtcdate() {
+  const months = <String>[
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  var dateNow = DateTime.now();
+  var dateUtc = dateNow.toUtc();
+  int day = dateUtc.day;
+  String month = months[dateUtc.month - 1];
+  String zero;
+  int hour;
+  String meridian;
+  int minutes = dateUtc.minute;
+  if (dateUtc.hour > 12) {
+    zero = "0";
+    hour = dateUtc.hour - 12;
+    meridian = "PM";
+  } else {
+    zero = "0";
+    hour = dateUtc.hour;
+    meridian = "AM";
+  }
+
+  String printableDate = day.toString() +
+      " " +
+      month +
+      ", " +
+      zero +
+      hour.toString() +
+      ":" +
+      minutes.toString() +
+      meridian;
+
+  return printableDate;
 }
