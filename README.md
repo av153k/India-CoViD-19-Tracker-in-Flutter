@@ -21,3 +21,7 @@ API used for India Stats - https://github.com/covid19india/api
 
 API used for global stats - https://corona.lmao.ninja/
 
+# Screenshots 
+
+![Alt text](screenshots/Screenshot_2020-04-23-02-53-05-145_com.example.covid_india_tracker.jpg?raw=true "Home Page")
+
