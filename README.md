@@ -24,17 +24,17 @@ API used for global stats - https://corona.lmao.ninja/
 # Screenshots 
 Home Page
 
-![Alt text](screenshots/Screenshot_2020-04-23-02-53-05-145_com.example.covid_india_tracker.jpg?raw=true "Home Page")
+<img src="https://github.com/av153k/India-CoViD-19-Tracker-in-Flutter/blob/master/screenshots/Screenshot_2020-04-23-02-53-05-145_com.example.covid_india_tracker.jpg" height=500/>
 
 StateWise Stats
 
-![Alt text](screenshots/Screenshot_2020-04-23-02-53-11-536_com.example.covid_india_tracker.jpg?raw=true "Home Page")
+<img src="https://github.com/av153k/India-CoViD-19-Tracker-in-Flutter/blob/master/screenshots/Screenshot_2020-04-23-02-53-11-536_com.example.covid_india_tracker.jpg" height=500/>
 
 Spread Trends
 
-![Alt text](screenshots/Screenshot_2020-04-23-02-53-17-990_com.example.covid_india_tracker.jpg?raw=true "Home Page")
+<img src="https://github.com/av153k/India-CoViD-19-Tracker-in-Flutter/blob/master/screenshots/Screenshot_2020-04-23-02-53-17-990_com.example.covid_india_tracker.jpg" height=500/>
 
 Global Stats
 
-![Alt text](screenshots/Screenshot_2020-04-23-02-53-25-912_com.example.covid_india_tracker.jpg?raw=true "Home Page")
+<img src="https://github.com/av153k/India-CoViD-19-Tracker-in-Flutter/blob/master/screenshots/Screenshot_2020-04-23-02-53-25-912_com.example.covid_india_tracker.jpg" height=500/>
 
